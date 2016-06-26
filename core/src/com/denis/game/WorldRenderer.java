@@ -3,6 +3,32 @@ package com.denis.game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.denis.game.objects.Air;
+import com.denis.game.objects.Blender;
+import com.denis.game.objects.Fan;
+import com.denis.game.objects.Iron;
+import com.denis.game.objects.Kettler;
+import com.denis.game.objects.Lamp;
+import com.denis.game.objects.Microwave;
+import com.denis.game.objects.Plate;
+import com.denis.game.objects.R3Condition;
+import com.denis.game.objects.R3Lamp;
+import com.denis.game.objects.R3Mac;
+import com.denis.game.objects.R3Outlet;
+import com.denis.game.objects.R3Switch;
+import com.denis.game.objects.R3TV;
+import com.denis.game.objects.R3Telephone;
+import com.denis.game.objects.R4Condition;
+import com.denis.game.objects.R4Lamp;
+import com.denis.game.objects.R4Switch;
+import com.denis.game.objects.R4TV;
+import com.denis.game.objects.Radio;
+import com.denis.game.objects.Refridgerator;
+import com.denis.game.objects.SoundLeft;
+import com.denis.game.objects.SoundRight;
+import com.denis.game.objects.Switch;
+import com.denis.game.objects.Toster;
+import com.denis.game.objects.Washing;
 
 /**
  * Created by loki on 19.06.16.
@@ -96,37 +122,239 @@ public class WorldRenderer {
     }
 
     private void renderBrokenObjects() {
-        for(GameObject obj : world.brokenObjects) {
-            if(obj instanceof Kettler) {
-                batch.draw(Assets.brokenKettle, obj.position.x - Kettler.KETTLER_WIDTH/2, obj.position.y - 0.7f*Kettler.KETTLER_HEIGHT,
-                        Kettler.KETTLER_WIDTH, Kettler.KETTLER_HEIGHT);
-            }
-            else if(obj instanceof Microwave) {
-                batch.draw(Assets.brokenMicrovawe, obj.position.x - Microwave.MICROWAVE_WIDTH/2 + 0.45f, obj.position.y - 0.5f*Microwave.MICROWAVE_HEIGHT + 0.1f,
-                        Microwave.MICROWAVE_WIDTH, Microwave.MICROWAVE_HEIGHT);
-            }
-            else if(obj instanceof Blender) {
-                batch.draw(Assets.brokenBlender, obj.position.x - Blender.BLENDER_WIDTH/2 - 0.1f, obj.position.y - 0.9f*Blender.BLENDER_HEIGHT, Blender.BLENDER_WIDTH, Blender.BLENDER_HEIGHT);
-            }
-            else if(obj instanceof Refridgerator) {
-                batch.draw(Assets.brokenRefrigeratorRegion, obj.position.x - Refridgerator.REFRIDGERATOR_WIDTH/2 + 0.65f, obj.position.y - 0.5f*Refridgerator.REFRIDGERATOR_HEIGHT + 0.35f,
-                        Refridgerator.REFRIDGERATOR_WIDTH, Refridgerator.REFRIDGERATOR_HEIGHT);
-            }
-            else if(obj instanceof Toster) {
-                batch.draw(Assets.brokenTosterRegion, obj.position.x - Toster.TOSTER_WIDTH/2 - 0.1f, obj.position.y - 0.35f*Toster.TOSTER_HEIGHT + 0.1f,
-                        Toster.TOSTER_WIDTH, Toster.TOSTER_HEIGHT);
-            }
-            else if(obj instanceof Lamp) {
-                batch.draw(Assets.brokenLampRegion, obj.position.x - Lamp.LAMP_WIDTH/2 - 0.2f, obj.position.y - 0.6f*Lamp.LAMP_HEIGHT + 0.55f,
-                        Lamp.LAMP_WIDTH, Lamp.LAMP_HEIGHT);
-            }
-            else if(obj instanceof Switch) {
-                batch.draw(Assets.brokenSwitchRegion, obj.position.x - Switch.SWITCH_WIDTH/2 - 0.1f, obj.position.y - 0.5f*Switch.SWITCH_HEIGHT - 0.2f,
-                        Switch.SWITCH_WIDTH, Switch.SWITCH_HEIGHT);
-            }
-            else if(obj instanceof Plate) {
-                batch.draw(Assets.brokenPlateRegion, obj.position.x - Plate.PLATE_WIDTH/2 + 0.2f, obj.position.y - 0.9f*Plate.PLATE_HEIGHT + 0.35f,
-                        Plate.PLATE_WIDTH, Plate.PLATE_HEIGHT);
+        for (GameObject obj : world.gameObjects) {
+            if(obj.visible) {
+                if (obj instanceof Kettler) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenKettle, obj.position.x - Kettler.KETTLER_WIDTH / 2, obj.position.y - 0.7f * Kettler.KETTLER_HEIGHT,
+                                Kettler.KETTLER_WIDTH, Kettler.KETTLER_HEIGHT);
+                    }
+                } else if (obj instanceof Microwave) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenMicrovawe, obj.position.x - Microwave.MICROWAVE_WIDTH / 2 + 0.45f, obj.position.y - 0.5f * Microwave.MICROWAVE_HEIGHT + 0.1f,
+                                Microwave.MICROWAVE_WIDTH, Microwave.MICROWAVE_HEIGHT);
+                    }
+                } else if (obj instanceof Blender) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenBlender, obj.position.x - Blender.BLENDER_WIDTH / 2 - 0.1f, obj.position.y - 0.9f * Blender.BLENDER_HEIGHT,
+                                Blender.BLENDER_WIDTH, Blender.BLENDER_HEIGHT);
+                    }
+                } else if (obj instanceof Refridgerator) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenRefrigeratorRegion, obj.position.x - Refridgerator.REFRIDGERATOR_WIDTH / 2 + 0.65f, obj.position.y - 0.5f * Refridgerator.REFRIDGERATOR_HEIGHT + 0.35f,
+                                Refridgerator.REFRIDGERATOR_WIDTH, Refridgerator.REFRIDGERATOR_HEIGHT);
+                    }
+                } else if (obj instanceof Toster) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenTosterRegion, obj.position.x - Toster.TOSTER_WIDTH / 2 - 0.1f, obj.position.y - 0.35f * Toster.TOSTER_HEIGHT + 0.1f,
+                                Toster.TOSTER_WIDTH, Toster.TOSTER_HEIGHT);
+                    }
+                } else if (obj instanceof Lamp) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenLampRegion, obj.position.x - Lamp.LAMP_WIDTH / 2 - 0.2f, obj.position.y - 0.6f * Lamp.LAMP_HEIGHT + 0.55f,
+                                Lamp.LAMP_WIDTH, Lamp.LAMP_HEIGHT);
+                    }
+                } else if (obj instanceof Switch) {
+                    if(obj.broken) {
+                        if(world.level == 1) {
+                            batch.draw(Assets.brokenSwitchRegion, obj.position.x - Switch.SWITCH_WIDTH / 2 - 0.1f, obj.position.y - 0.5f * Switch.SWITCH_HEIGHT - 0.2f,
+                                    Switch.SWITCH_WIDTH, Switch.SWITCH_HEIGHT);
+                        }
+                        else if(world.level == 2) {
+                            batch.draw(Assets.brokenSwitchRegion2, obj.position.x - Switch.SWITCH_WIDTH / 2 - 0.1f, obj.position.y - 0.5f * Switch.SWITCH_HEIGHT - 0.2f,
+                                    Switch.SWITCH_WIDTH, Switch.SWITCH_HEIGHT);
+                        }
+                    }
+                    else {
+                        batch.draw(Assets.switchRegion, obj.position.x - Switch.SWITCH_WIDTH / 2 - 0.1f, obj.position.y - 0.5f * Switch.SWITCH_HEIGHT - 0.2f,
+                                Switch.SWITCH_WIDTH, Switch.SWITCH_HEIGHT);
+                    }
+                } else if (obj instanceof Plate) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenPlateRegion, obj.position.x - Plate.PLATE_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Plate.PLATE_HEIGHT + 0.35f,
+                                Plate.PLATE_WIDTH, Plate.PLATE_HEIGHT);
+                    }
+                }
+                else if(obj instanceof Iron) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenIronRegion, obj.position.x - Iron.IRON_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Iron.IRON_HEIGHT + 0.35f,
+                                Iron.IRON_WIDTH, Iron.IRON_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.ironRegion, obj.position.x - Iron.IRON_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Iron.IRON_HEIGHT + 0.35f,
+                                Iron.IRON_WIDTH, Iron.IRON_HEIGHT);
+                    }
+                }
+                else if(obj instanceof Washing) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenWashingRegion, obj.position.x - Washing.WASHING_WIDTH / 2 + 0.2f, obj.position.y - Washing.WASHING_HEIGHT/2 + 0.35f,
+                                Washing.WASHING_WIDTH, Washing.WASHING_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.washingRegion, obj.position.x - Washing.WASHING_WIDTH / 2 + 0.2f, obj.position.y - Washing.WASHING_HEIGHT/2 + 0.35f,
+                                Washing.WASHING_WIDTH, Washing.WASHING_HEIGHT);
+                    }
+                }
+                else if(obj instanceof Fan) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenFanRegion, obj.position.x - Fan.FAN_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Fan.FAN_HEIGHT + 0.35f,
+                                Fan.FAN_WIDTH, Fan.FAN_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.fanRegion, obj.position.x - Fan.FAN_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Fan.FAN_HEIGHT + 0.35f,
+                                Fan.FAN_WIDTH, Fan.FAN_HEIGHT);
+                    }
+                }
+                else if(obj instanceof Radio ) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenRadioRegion, obj.position.x - Radio.RADIO_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Radio.RADIO_HEIGHT + 0.35f,
+                                Radio.RADIO_WIDTH, Radio.RADIO_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.radioRegion, obj.position.x - Radio.RADIO_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Radio.RADIO_HEIGHT + 0.35f,
+                                Radio.RADIO_WIDTH, Radio.RADIO_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R3TV) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR3TVRegion, obj.position.x - R3TV.R3TV_WIDTH / 2, obj.position.y - R3TV.R3TV_HEIGHT/2,
+                                R3TV.R3TV_WIDTH, R3TV.R3TV_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R3TVRegion, obj.position.x - R3TV.R3TV_WIDTH / 2, obj.position.y - R3TV.R3TV_HEIGHT/2,
+                                R3TV.R3TV_WIDTH, R3TV.R3TV_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R3Condition) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR3ConditionRegion, obj.position.x - R3Condition.R3CONDITION_WIDTH / 2, obj.position.y - R3Condition.R3CONDITION_HEIGHT/2,
+                                R3Condition.R3CONDITION_WIDTH, R3Condition.R3CONDITION_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R3ConditionRegion, obj.position.x - R3Condition.R3CONDITION_WIDTH / 2, obj.position.y - R3Condition.R3CONDITION_HEIGHT/2,
+                                R3Condition.R3CONDITION_WIDTH, R3Condition.R3CONDITION_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R3Switch) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR3SwitchRegion, obj.position.x - R3Switch.R3SWITCH_WIDTH / 2, obj.position.y - R3Switch.R3SWITCH_HEIGHT/2,
+                                R3Switch.R3SWITCH_WIDTH, R3Switch.R3SWITCH_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R3SwitchRegion, obj.position.x - R3Switch.R3SWITCH_WIDTH / 2, obj.position.y - R3Switch.R3SWITCH_HEIGHT/2,
+                                R3Switch.R3SWITCH_WIDTH, R3Switch.R3SWITCH_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R3Lamp) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR3LampRegion, obj.position.x - R3Lamp.R3LAMP_WIDTH / 2, obj.position.y - R3Lamp.R3LAMP_HEIGHT/2,
+                                R3Lamp.R3LAMP_WIDTH, R3Lamp.R3LAMP_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R3LampRegion, obj.position.x - R3Lamp.R3LAMP_WIDTH / 2, obj.position.y - R3Lamp.R3LAMP_HEIGHT/2,
+                                R3Lamp.R3LAMP_WIDTH, R3Lamp.R3LAMP_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R3Telephone) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR3TelephoneRegion, obj.position.x - R3Telephone.R3TELEPHONE_WIDTH / 2, obj.position.y - R3Telephone.R3TELEPHONE_HEIGHT/2,
+                                R3Telephone.R3TELEPHONE_WIDTH, R3Telephone.R3TELEPHONE_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R3TelephoneRegion, obj.position.x - R3Telephone.R3TELEPHONE_WIDTH / 2, obj.position.y - R3Telephone.R3TELEPHONE_HEIGHT/2,
+                                R3Telephone.R3TELEPHONE_WIDTH, R3Telephone.R3TELEPHONE_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R3Outlet) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR3OutletRegion, obj.position.x - R3Outlet.R3OUTLET_WIDTH / 2, obj.position.y - R3Outlet.R3OUTLET_HEIGHT/2,
+                                R3Outlet.R3OUTLET_WIDTH, R3Outlet.R3OUTLET_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R3OutletRegion, obj.position.x - R3Outlet.R3OUTLET_WIDTH / 2, obj.position.y - R3Outlet.R3OUTLET_HEIGHT/2,
+                                R3Outlet.R3OUTLET_WIDTH, R3Outlet.R3OUTLET_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R3Mac) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR3MacRegion, obj.position.x - R3Mac.R3MAC_WIDTH / 2, obj.position.y - R3Mac.R3MAC_HEIGHT/2,
+                                R3Mac.R3MAC_WIDTH, R3Mac.R3MAC_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R3MacRegion, obj.position.x - R3Mac.R3MAC_WIDTH / 2, obj.position.y - R3Mac.R3MAC_HEIGHT/2,
+                                R3Mac.R3MAC_WIDTH, R3Mac.R3MAC_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R4Lamp) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR4LampRegion, obj.position.x - R4Lamp.R4LAMP_WIDTH / 2, obj.position.y - R4Lamp.R4LAMP_HEIGHT/2,
+                                R4Lamp.R4LAMP_WIDTH, R4Lamp.R4LAMP_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R4LampRegion, obj.position.x - R4Lamp.R4LAMP_WIDTH / 2, obj.position.y - R4Lamp.R4LAMP_HEIGHT/2,
+                                R4Lamp.R4LAMP_WIDTH, R4Lamp.R4LAMP_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R4Condition) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR4ConditionRegion, obj.position.x - R4Condition.R4CONDITION_WIDTH / 2, obj.position.y - R4Condition.R4CONDITION_HEIGHT/2,
+                                R4Condition.R4CONDITION_WIDTH, R4Condition.R4CONDITION_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R4ConditionRegion, obj.position.x - R4Condition.R4CONDITION_WIDTH / 2, obj.position.y - R4Condition.R4CONDITION_HEIGHT/2,
+                                R4Condition.R4CONDITION_WIDTH, R4Condition.R4CONDITION_HEIGHT);
+                    }
+                }
+                else if(obj instanceof SoundLeft) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenSoundLetfRegion, obj.position.x - SoundLeft.SOUNDLEFT_WIDTH/ 2, obj.position.y - SoundLeft.SOUNDLEFT_HEIGHT/2,
+                                SoundLeft.SOUNDLEFT_WIDTH, SoundLeft.SOUNDLEFT_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.SoundLetfRegion, obj.position.x - SoundLeft.SOUNDLEFT_WIDTH / 2, obj.position.y - SoundLeft.SOUNDLEFT_HEIGHT/2,
+                                SoundLeft.SOUNDLEFT_WIDTH, SoundLeft.SOUNDLEFT_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R4TV) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenR4TvRegion, obj.position.x - R4TV.R4TV_WIDTH/ 2, obj.position.y - R4TV.R4TV_HEIGHT/2,
+                                R4TV.R4TV_WIDTH, R4TV.R4TV_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.R4TvRegion, obj.position.x - R4TV.R4TV_WIDTH / 2, obj.position.y - R4TV.R4TV_HEIGHT/2,
+                                R4TV.R4TV_WIDTH, R4TV.R4TV_HEIGHT);
+                    }
+                }
+                else if(obj instanceof SoundRight) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenSoundRightRegion, obj.position.x - SoundRight.SOUNDRIGHT_WIDTH/ 2, obj.position.y - SoundRight.SOUNDRIGHT_HEIGHT/2,
+                                SoundRight.SOUNDRIGHT_WIDTH, SoundRight.SOUNDRIGHT_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.SoundRightRegion, obj.position.x - SoundRight.SOUNDRIGHT_WIDTH / 2, obj.position.y - SoundRight.SOUNDRIGHT_HEIGHT/2,
+                                SoundRight.SOUNDRIGHT_WIDTH, SoundRight.SOUNDRIGHT_HEIGHT);
+                    }
+                }
+                else if(obj instanceof Air) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenAirRegion, obj.position.x - Air.AIR_WIDTH/ 2, obj.position.y - Air.AIR_HEIGHT/2,
+                                Air.AIR_WIDTH, Air.AIR_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.AirRegion, obj.position.x - Air.AIR_WIDTH / 2, obj.position.y - Air.AIR_HEIGHT/2,
+                                Air.AIR_WIDTH, Air.AIR_HEIGHT);
+                    }
+                }
+                else if(obj instanceof R4Switch) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenSwitch4Region, obj.position.x - R4Switch.R4SWITCH_WIDTH/ 2, obj.position.y - R4Switch.R4SWITCH_HEIGHT/2,
+                                R4Switch.R4SWITCH_WIDTH, R4Switch.R4SWITCH_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.Switch4Region, obj.position.x - R4Switch.R4SWITCH_WIDTH / 2, obj.position.y - R4Switch.R4SWITCH_HEIGHT/2,
+                                R4Switch.R4SWITCH_WIDTH, R4Switch.R4SWITCH_HEIGHT);
+                    }
+                }
             }
         }
     }

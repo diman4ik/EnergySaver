@@ -13,6 +13,7 @@ public class GameObject {
     public final float height;
 
     public boolean visible = true;
+    public boolean broken = false;
 
     public GameObject (float x, float y, float width, float height) {
         this.position = new Vector2(x, y);
@@ -29,5 +30,8 @@ public class GameObject {
 
     public void setVisibility(boolean visibility) {
         visible = visibility;
+    }
+    public void setBroken(boolean broken) {
+        this.broken = broken;
     }
 }

@@ -2,6 +2,32 @@ package com.denis.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.denis.game.objects.Air;
+import com.denis.game.objects.Blender;
+import com.denis.game.objects.Fan;
+import com.denis.game.objects.Iron;
+import com.denis.game.objects.Kettler;
+import com.denis.game.objects.Lamp;
+import com.denis.game.objects.Microwave;
+import com.denis.game.objects.Plate;
+import com.denis.game.objects.R3Condition;
+import com.denis.game.objects.R3Lamp;
+import com.denis.game.objects.R3Mac;
+import com.denis.game.objects.R3Outlet;
+import com.denis.game.objects.R3Switch;
+import com.denis.game.objects.R3TV;
+import com.denis.game.objects.R3Telephone;
+import com.denis.game.objects.R4Condition;
+import com.denis.game.objects.R4Lamp;
+import com.denis.game.objects.R4Switch;
+import com.denis.game.objects.R4TV;
+import com.denis.game.objects.Radio;
+import com.denis.game.objects.Refridgerator;
+import com.denis.game.objects.SoundLeft;
+import com.denis.game.objects.SoundRight;
+import com.denis.game.objects.Switch;
+import com.denis.game.objects.Toster;
+import com.denis.game.objects.Washing;
 
 import java.util.Random;
 
@@ -12,7 +38,8 @@ public class GameWorld {
 
     public Lightning lightning;
     public Boom boom;
-    public Array<GameObject> brokenObjects = new Array<GameObject>();
+    //public Array<GameObject> brokenObjects = new Array<GameObject>();
+    public Array<GameObject> gameObjects = new Array<GameObject>();
     int [] boomIndexes = new int [] { -1, -1, -1 };
 
     public final float lightningSpawnInterval = 6f;
@@ -38,7 +65,8 @@ public class GameWorld {
         /*for( int i = 0; i < 8; i++ ) {
             addBrokenObject(i);
         }*/
-        setLevel(2);
+        setLevel(4);
+        stop();
     }
 
     public void update(float delta) {
@@ -98,22 +126,56 @@ public class GameWorld {
             new Vector2(12, 14)
     };
 
+    // утюг
+    // стиралка
+    // фен
+    // радио
+    // выключатель
     private static final Vector2[] spawnCoordsLevel2 =
     {
-            new Vector2(10, 5),
-            new Vector2(15f, 9)
+            new Vector2(7.1f, 4.1f),
+            new Vector2(1.6f, 4.25f),
+            new Vector2(3.2f, 7.5f),
+            new Vector2(15f, 10),
+            new Vector2(4.5f, 10.5f)
     };
 
+    // телек
+    // кондиционер
+    // выключатель
+    // лампа
+    // телефон
+    // розетка
+    // комп
     private static final Vector2[] spawnCoordsLevel3 =
     {
-        new Vector2(10, 5),
-        new Vector2(15f, 9)
+        new Vector2(4.6f, 7.2f),
+        new Vector2(3.5f, 11f),
+        new Vector2(6.5f, 11.5f),
+        new Vector2(10f, 6.9f),
+        new Vector2(12.0f, 2.8f),
+        new Vector2(10.1f, 11),
+        new Vector2(16.8f, 7.5f),
     };
 
+    // лампа1
+    // лампа2
+    // кондиционер
+    // левые колонки
+    // телек
+    // правые колонки
+    // освежитель
+    // выключатель
     private static final Vector2[] spawnCoordsLevel4 =
     {
-        new Vector2(10, 5),
-        new Vector2(15f, 9)
+            new Vector2(6.3f, 8.3f),
+            new Vector2(2.7f, 5.4f),
+            new Vector2(8, 13.6f),
+            new Vector2(11.5f, 11f),
+            new Vector2(13, 11f),
+            new Vector2(15, 8.8f),
+            new Vector2(16.3f, 6.3f),
+            new Vector2(16.5f, 10.5f),
     };
 
     int prevIndex = -1;
@@ -142,7 +204,7 @@ public class GameWorld {
 
     public void addBrokenObject(int index) {
         if(level == 1) {
-            if (index == 0) {
+            /*if (index == 0) {
                 brokenObjects.add(new Kettler(spawnCoords[0].x, spawnCoords[0].y));
             } else if (index == 1) {
                 brokenObjects.add(new Microwave(spawnCoords[1].x, spawnCoords[1].y));
@@ -158,10 +220,11 @@ public class GameWorld {
                 brokenObjects.add(new Lamp(spawnCoords[6].x, spawnCoords[6].y));
             } else if (index == 7) {
                 brokenObjects.add(new Switch(spawnCoords[7].x, spawnCoords[7].y));
-            }
+            }*/
+            gameObjects.get(index).setVisibility(true);
         }
-        else if(level == 2) {
-
+        else {
+            gameObjects.get(index).setBroken(true);
         }
     }
 
@@ -183,16 +246,61 @@ public class GameWorld {
     public void setLevel(int level) {
         this.level = level;
 
-        spawnCoords = spawnCoordsLevel1;
+        if(level == 1) {
+            spawnCoords = spawnCoordsLevel1;
 
+            gameObjects.clear();
+
+            gameObjects.add(new Kettler(spawnCoords[0].x, spawnCoords[0].y));
+            gameObjects.add(new Microwave(spawnCoords[1].x, spawnCoords[1].y));
+            gameObjects.add(new Refridgerator(spawnCoords[2].x, spawnCoords[2].y));
+            gameObjects.add(new Toster(spawnCoords[3].x, spawnCoords[3].y));
+            gameObjects.add(new Plate(spawnCoords[4].x, spawnCoords[4].y));
+            gameObjects.add(new Blender(spawnCoords[5].x, spawnCoords[5].y));
+            gameObjects.add(new Lamp(spawnCoords[6].x, spawnCoords[6].y));
+            gameObjects.add(new Switch(spawnCoords[7].x, spawnCoords[7].y));
+
+            for(int i = 0; i < gameObjects.size; i++)
+                gameObjects.get(i).setVisibility(false);
+        }
         if(level == 2) {
             spawnCoords = spawnCoordsLevel2;
 
+            gameObjects.clear();
+
+            gameObjects.add(new Iron(spawnCoords[0].x, spawnCoords[0].y));
+            gameObjects.add(new Washing(spawnCoords[1].x, spawnCoords[1].y));
+            gameObjects.add(new Fan(spawnCoords[2].x, spawnCoords[2].y));
+            gameObjects.add(new Radio(spawnCoords[3].x, spawnCoords[3].y));
+            gameObjects.add(new Switch(spawnCoords[4].x, spawnCoords[4].y));
         }
-        else if(level == 3)
+        else if(level == 3) {
             spawnCoords = spawnCoordsLevel3;
-        else if(level == 4)
+
+            gameObjects.clear();
+
+            gameObjects.add(new R3TV(spawnCoords[0].x, spawnCoords[0].y));
+            gameObjects.add(new R3Condition(spawnCoords[1].x, spawnCoords[1].y));
+            gameObjects.add(new R3Switch(spawnCoords[2].x, spawnCoords[2].y));
+            gameObjects.add(new R3Lamp(spawnCoords[3].x, spawnCoords[3].y));
+            gameObjects.add(new R3Telephone(spawnCoords[4].x, spawnCoords[4].y));
+            gameObjects.add(new R3Outlet(spawnCoords[5].x, spawnCoords[5].y));
+            gameObjects.add(new R3Mac(spawnCoords[6].x, spawnCoords[6].y));
+        }
+        else if(level == 4) {
             spawnCoords = spawnCoordsLevel4;
+
+            gameObjects.clear();
+
+            gameObjects.add(new R4Lamp(spawnCoords[0].x, spawnCoords[0].y));
+            gameObjects.add(new R4Lamp(spawnCoords[1].x, spawnCoords[1].y));
+            gameObjects.add(new R4Condition(spawnCoords[2].x, spawnCoords[2].y));
+            gameObjects.add(new SoundLeft(spawnCoords[3].x, spawnCoords[3].y));
+            gameObjects.add(new R4TV(spawnCoords[4].x, spawnCoords[4].y));
+            gameObjects.add(new SoundRight(spawnCoords[5].x, spawnCoords[5].y));
+            gameObjects.add(new Air(spawnCoords[6].x, spawnCoords[6].y));
+            gameObjects.add(new R4Switch(spawnCoords[7].x, spawnCoords[7].y));
+        }
 
         start();
     }

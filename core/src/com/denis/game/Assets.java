@@ -70,14 +70,125 @@ public class Assets {
     public static Texture brokenSwitch;
     public static TextureRegion brokenSwitchRegion;
 
+    public static Texture switcher;
+    public static TextureRegion switchRegion;
+
     public static Texture brokenToster;
     public static TextureRegion brokenTosterRegion;
 
     public static Texture brokenWashing;
     public static TextureRegion brokenWashingRegion;
 
+    public static Texture washing;
+    public static TextureRegion washingRegion;
+
+    public static Texture iron;
+    public static TextureRegion ironRegion;
+
+    public static Texture brokenIron;
+    public static TextureRegion brokenIronRegion;
+
+    public static Texture brokenFan;
+    public static TextureRegion brokenFanRegion;
+
+    public static Texture fan;
+    public static TextureRegion fanRegion;
+
+    public static Texture radio;
+    public static TextureRegion radioRegion;
+
+    public static Texture brokenRadio;
+    public static TextureRegion brokenRadioRegion;
+
     public static Texture winScreen;
     public static TextureRegion winScreenRegion;
+
+    public static Texture brokenSwitch2;
+    public static TextureRegion brokenSwitchRegion2;
+
+    public static Texture R3TV;
+    public static TextureRegion R3TVRegion;
+
+    public static Texture brokenR3TV;
+    public static TextureRegion brokenR3TVRegion;
+
+    public static Texture R3Condition;
+    public static TextureRegion R3ConditionRegion;
+
+    public static Texture brokenR3Condition;
+    public static TextureRegion brokenR3ConditionRegion;
+
+    public static Texture R3Switch;
+    public static TextureRegion R3SwitchRegion;
+
+    public static Texture brokenR3Switch;
+    public static TextureRegion brokenR3SwitchRegion;
+
+    public static Texture R3Lamp;
+    public static TextureRegion R3LampRegion;
+
+    public static Texture brokenR3Lamp;
+    public static TextureRegion brokenR3LampRegion;
+
+    public static Texture R3Telephone;
+    public static TextureRegion R3TelephoneRegion;
+
+    public static Texture brokenR3Telephone;
+    public static TextureRegion brokenR3TelephoneRegion;
+
+    public static Texture R3Outlet;
+    public static TextureRegion R3OutletRegion;
+
+    public static Texture brokenR3Outlet;
+    public static TextureRegion brokenR3OutletRegion;
+
+    public static Texture R3Mac;
+    public static TextureRegion R3MacRegion;
+
+    public static Texture brokenR3Mac;
+    public static TextureRegion brokenR3MacRegion;
+
+    public static Texture R4Lamp;
+    public static TextureRegion R4LampRegion;
+
+    public static Texture brokenR4Lamp;
+    public static TextureRegion brokenR4LampRegion;
+
+    public static Texture R4Condition;
+    public static TextureRegion R4ConditionRegion;
+
+    public static Texture brokenR4Condition;
+    public static TextureRegion brokenR4ConditionRegion;
+
+    public static Texture SoundLet;
+    public static TextureRegion SoundLetfRegion;
+
+    public static Texture brokenSoundLet;
+    public static TextureRegion brokenSoundLetfRegion;
+
+    public static Texture R4TV;
+    public static TextureRegion R4TvRegion;
+
+    public static Texture brokenR4TV;
+    public static TextureRegion brokenR4TvRegion;
+
+    public static Texture SoundRight;
+    public static TextureRegion SoundRightRegion;
+
+    public static Texture brokenSoundRight;
+    public static TextureRegion brokenSoundRightRegion;
+
+    public static Texture Air;
+    public static TextureRegion AirRegion;
+
+    public static Texture brokenAir;
+    public static TextureRegion brokenAirRegion;
+
+    public static Texture Switch4;
+    public static TextureRegion Switch4Region;
+
+    public static Texture brokenSwitch4;
+    public static TextureRegion brokenSwitch4Region;
 
     public static void load () {
         startBackground = loadTexture("cover.png");
@@ -383,14 +494,125 @@ public class Assets {
         brokenSwitch = loadTexture("room1/broken/switch.png");
         brokenSwitchRegion = new TextureRegion(brokenSwitch, 0, 0, 44, 66);
 
+        brokenSwitch2 = loadTexture("room2/broken/r2bswitch.png");
+        brokenSwitchRegion2 = new TextureRegion(brokenSwitch2, 0, 0, 45, 67);
+
+        switcher = loadTexture("room2/normal/r2switch.png");
+        switchRegion = new TextureRegion(switcher, 0, 0, 45, 67);
+
         brokenToster = loadTexture("room1/broken/toster.png");
         brokenTosterRegion = new TextureRegion(brokenToster, 0, 0, 101, 100);
 
-        brokenWashing = loadTexture("room1/broken/washing.png");
-        brokenWashingRegion = new TextureRegion(brokenWashing, 0, 0, 224, 325);
+        brokenWashing = loadTexture("room2/broken/r2bwashing.png");
+        brokenWashingRegion = new TextureRegion(brokenWashing, 0, 0, 256, 366);
+
+        washing = loadTexture("room2/normal/r2washing.png");
+        washingRegion = new TextureRegion(washing, 0, 0, 256, 366);
+
+        iron = loadTexture("room2/normal/r2iron.png");
+        ironRegion = new TextureRegion(iron, 0, 0, 101, 87);
+
+        brokenIron = loadTexture("room2/broken/r2biron.png");
+        brokenIronRegion = new TextureRegion(brokenIron, 0, 0, 101, 87);
+
+        brokenFan = loadTexture("room2/broken/r2bfen.png");
+        brokenFanRegion = new TextureRegion(brokenFan, 0, 0, 118, 67);
+
+        fan = loadTexture("room2/normal/r2fen.png");
+        fanRegion = new TextureRegion(fan, 0, 0, 118, 67);
+
+        radio = loadTexture("room2/normal/r2radio.png");
+        radioRegion = new TextureRegion(radio, 0, 0, 77, 92);
+
+        brokenRadio = loadTexture("room2/broken/r2bradio.png");
+        brokenRadioRegion = new TextureRegion(brokenRadio, 0, 0, 77, 92);
 
         winScreen = loadTexture("professor/professor_example.png");
         winScreenRegion = new TextureRegion(winScreen, 0, 0, 1920, 1080);
+
+        R3TV = loadTexture("room3/normal/r3tv.png");
+        R3TVRegion = new TextureRegion(R3TV, 0, 0, 458, 493);
+
+        brokenR3TV = loadTexture("room3/broken/r3btv.png");
+        brokenR3TVRegion = new TextureRegion(brokenR3TV, 0, 0, 458, 493);
+
+        R3Condition = loadTexture("room3/normal/r3condition.png");
+        R3ConditionRegion = new TextureRegion(R3Condition, 0, 0, 229, 179);
+
+        brokenR3Condition = loadTexture("room3/broken/r3bcondition.png");
+        brokenR3ConditionRegion = new TextureRegion(R3Condition, 0, 0, 229, 179);
+
+        R3Switch = loadTexture("room3/normal/r3switch.png");
+        R3SwitchRegion = new TextureRegion(R3Switch, 0, 0, 53, 80);
+
+        brokenR3Switch = loadTexture("room3/broken/r3bswitch.png");
+        brokenR3SwitchRegion = new TextureRegion(brokenR3Switch, 0, 0, 53, 80);
+
+        R3Lamp = loadTexture("room3/normal/r3lamp.png");
+        R3LampRegion = new TextureRegion(R3Lamp, 0, 0, 199, 385);
+
+        brokenR3Lamp = loadTexture("room3/broken/r3blamp.png");
+        brokenR3LampRegion = new TextureRegion(brokenR3Lamp, 0, 0, 199, 385);
+
+        R3Telephone = loadTexture("room3/normal/r3phone.png");
+        R3TelephoneRegion = new TextureRegion(R3Telephone, 0, 0, 146, 92);
+
+        brokenR3Telephone = loadTexture("room3/broken/r3bphone.png");
+        brokenR3TelephoneRegion = new TextureRegion(brokenR3Telephone, 0, 0, 146, 92);
+
+        R3Outlet = loadTexture("room3/normal/r3outlet.png");
+        R3OutletRegion = new TextureRegion(R3Outlet, 0, 0, 46, 69);
+
+        brokenR3Outlet = loadTexture("room3/broken/r3boutlet.png");
+        brokenR3OutletRegion = new TextureRegion(brokenR3Outlet, 0, 0, 46, 69);
+
+        R3Mac = loadTexture("room3/normal/r3mac.png");
+        R3MacRegion = new TextureRegion(R3Mac, 0, 0, 340, 291);
+
+        brokenR3Mac = loadTexture("room3/broken/r3bmac.png");
+        brokenR3MacRegion = new TextureRegion(brokenR3Mac, 0, 0, 340, 291);
+
+        R4Lamp = loadTexture("room4/normal/r4lamp1.png");
+        R4LampRegion = new TextureRegion(R4Lamp, 0, 0, 71, 104);
+
+        brokenR4Lamp = loadTexture("room4/broken/r4blamp1.png");
+        brokenR4LampRegion = new TextureRegion(brokenR4Lamp, 0, 0, 71, 104);
+
+        R4Condition = loadTexture("room4/normal/r4condition.png");
+        R4ConditionRegion = new TextureRegion(R4Condition, 0, 0, 205, 161);
+
+        brokenR4Condition = loadTexture("room4/broken/r4bcondition.png");
+        brokenR4ConditionRegion = new TextureRegion(brokenR4Condition, 0, 0, 205, 161);
+
+        SoundLet = loadTexture("room4/normal/r4sound1.png");
+        SoundLetfRegion = new TextureRegion(SoundLet, 0, 0, 174, 310);
+
+        brokenSoundLet =  loadTexture("room4/broken/r4bsound1.png");
+        brokenSoundLetfRegion = new TextureRegion(brokenSoundLet, 0, 0, 174, 310);
+
+        R4TV = loadTexture("room4/normal/r4tv.png");
+        R4TvRegion = new TextureRegion(R4TV, 0, 0, 215, 420);
+
+        brokenR4TV =  loadTexture("room4/broken/r4btv.png");
+        brokenR4TvRegion = new TextureRegion(brokenR4TV, 0, 0, 215, 420);
+
+        SoundRight =   loadTexture("room4/normal/r4sound2.png");
+        SoundRightRegion = new TextureRegion(SoundRight, 0, 0, 77, 294);
+
+        brokenSoundRight =   loadTexture("room4/broken/r4bsound2.png");
+        brokenSoundRightRegion =  new TextureRegion(brokenSoundRight, 0, 0, 77, 294);
+
+        Air =   loadTexture("room4/normal/r4air.png");
+        AirRegion = new TextureRegion(Air, 0, 0, 116, 174);
+
+        brokenAir =   loadTexture("room4/broken/r4bair.png");
+        brokenAirRegion =  new TextureRegion(brokenAir, 0, 0, 77, 294);
+
+        Switch4 =    loadTexture("room4/normal/r4switch.png");
+        Switch4Region =  new TextureRegion(Switch4, 0, 0, 44, 66);
+
+        brokenSwitch4 =    loadTexture("room4/broken/r4bswitch.png");
+        brokenSwitch4Region =  new TextureRegion(brokenSwitch4, 0, 0, 44, 66);
     }
 
     public static Texture loadTexture (String file) {

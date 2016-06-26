@@ -1,9 +1,11 @@
-package com.denis.game;
+package com.denis.game.objects;
+
+import com.denis.game.GameObject;
 
 /**
  * Created by loki on 21.06.16.
  */
-public class Microwave  extends GameObject{
+public class Microwave  extends GameObject {
     public static final float MICROWAVE_WIDTH = 1.95f;
     public static final float MICROWAVE_HEIGHT = 2.85f;
 
