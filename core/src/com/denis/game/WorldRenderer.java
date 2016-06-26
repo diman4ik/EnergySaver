@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.denis.game.objects.Air;
 import com.denis.game.objects.Blender;
 import com.denis.game.objects.Fan;
+import com.denis.game.objects.Indicator;
 import com.denis.game.objects.Iron;
 import com.denis.game.objects.Kettler;
 import com.denis.game.objects.Lamp;
@@ -87,6 +88,7 @@ public class WorldRenderer {
         renderBrokenObjects();
         renderBoom();
         renderLightning();
+        renderIndicator();
         batch.end();
     }
 
@@ -119,6 +121,24 @@ public class WorldRenderer {
             batch.draw(keyFrame, boom.position.x - Boom.BOOM_WIDTH/2, boom.position.y - Boom.BOOM_HEIGHT/2,
                     Boom.BOOM_WIDTH, Boom.BOOM_HEIGHT);
         }
+    }
+
+    private void renderIndicator() {
+        batch.draw( Assets.indicatorEmptyRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2, world.indicator.position.y - Indicator.INDICATOR_HEIGHT/2,
+                    Indicator.INDICATOR_WIDTH, Indicator.INDICATOR_HEIGHT + 0.1f);
+
+        if( world.percent == 0)
+            return;
+
+
+        float part = ((float)world.percent)/100;
+
+        int length = ((int)(Assets.indicatorFull.getWidth()*part));
+
+        TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, 0, 0, length, 55);
+        batch.draw( indicatorRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2 + Indicator.INDICATOR_WIDTH*(1f - part) + 0.2f,
+                world.indicator.position.y - Indicator.INDICATOR_HEIGHT/2 + 0.65f,
+                Indicator.INDICATOR_WIDTH*part - 0.6f, Indicator.INDICATOR_HEIGHT*0.36f + 0.05f);
     }
 
     private void renderBrokenObjects() {

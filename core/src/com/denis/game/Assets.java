@@ -190,6 +190,13 @@ public class Assets {
     public static Texture brokenSwitch4;
     public static TextureRegion brokenSwitch4Region;
 
+    public static Texture indicatorEmpty;
+    public static TextureRegion indicatorEmptyRegion;
+
+    public static Texture indicatorFull;
+    public static TextureRegion indicatorFullRegion;
+
+
     public static void load () {
         startBackground = loadTexture("cover.png");
         startBackgroundRegion = new TextureRegion(startBackground, 0, 0, 1920, 1080);
@@ -613,6 +620,12 @@ public class Assets {
 
         brokenSwitch4 =    loadTexture("room4/broken/r4bswitch.png");
         brokenSwitch4Region =  new TextureRegion(brokenSwitch4, 0, 0, 44, 66);
+
+        indicatorEmpty =    loadTexture("power_border.png");
+        indicatorEmptyRegion = new TextureRegion(indicatorEmpty, 0, 0, 364, 136);
+
+        indicatorFull =    loadTexture("power.png");
+        indicatorFullRegion =  new TextureRegion(indicatorEmpty, 0, 0, 275, 55);
     }
 
     public static Texture loadTexture (String file) {

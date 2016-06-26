@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Array;
 import com.denis.game.objects.Air;
 import com.denis.game.objects.Blender;
 import com.denis.game.objects.Fan;
+import com.denis.game.objects.Indicator;
 import com.denis.game.objects.Iron;
 import com.denis.game.objects.Kettler;
 import com.denis.game.objects.Lamp;
@@ -38,6 +39,7 @@ public class GameWorld {
 
     public Lightning lightning;
     public Boom boom;
+    public Indicator indicator;
     //public Array<GameObject> brokenObjects = new Array<GameObject>();
     public Array<GameObject> gameObjects = new Array<GameObject>();
     int [] boomIndexes = new int [] { -1, -1, -1 };
@@ -53,6 +55,8 @@ public class GameWorld {
 
     public int level = 1;
 
+    public int percent = 60;
+
     boolean update = true;
 
 
@@ -61,6 +65,7 @@ public class GameWorld {
         lightning.setVisibility(false);
         boom = new Boom(3, 3);
         boom.setVisibility(false);
+        indicator = new Indicator(3, 14);
 
         /*for( int i = 0; i < 8; i++ ) {
             addBrokenObject(i);
