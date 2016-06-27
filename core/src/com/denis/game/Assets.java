@@ -493,7 +493,7 @@ public class Assets {
         brokenMicrovaweRegion = new TextureRegion(brokenMicrovawe, 0, 0, 190, 202);
 
         brokenPlate = loadTexture("room1/broken/plate.png");
-        brokenPlateRegion = new TextureRegion(brokenPlate, 0, 0, 221, 330);
+        brokenPlateRegion = new TextureRegion(brokenPlate, 0, 0, 220, 428);
 
         brokenRefrigerator = loadTexture("room1/broken/refrigerator.png");
         brokenRefrigeratorRegion = new TextureRegion(brokenRefrigerator, 0, 0, 250, 624);
@@ -547,7 +547,7 @@ public class Assets {
         R3ConditionRegion = new TextureRegion(R3Condition, 0, 0, 229, 179);
 
         brokenR3Condition = loadTexture("room3/broken/r3bcondition.png");
-        brokenR3ConditionRegion = new TextureRegion(R3Condition, 0, 0, 229, 179);
+        brokenR3ConditionRegion = new TextureRegion(brokenR3Condition, 0, 0, 229, 179);
 
         R3Switch = loadTexture("room3/normal/r3switch.png");
         R3SwitchRegion = new TextureRegion(R3Switch, 0, 0, 53, 80);
@@ -613,7 +613,7 @@ public class Assets {
         AirRegion = new TextureRegion(Air, 0, 0, 116, 174);
 
         brokenAir =   loadTexture("room4/broken/r4bair.png");
-        brokenAirRegion =  new TextureRegion(brokenAir, 0, 0, 77, 294);
+        brokenAirRegion =  new TextureRegion(brokenAir, 0, 0, 116, 174);
 
         Switch4 =    loadTexture("room4/normal/r4switch.png");
         Switch4Region =  new TextureRegion(Switch4, 0, 0, 44, 66);

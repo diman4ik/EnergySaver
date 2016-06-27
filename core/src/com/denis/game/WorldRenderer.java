@@ -1,6 +1,8 @@
 package com.denis.game;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.denis.game.objects.Air;
@@ -43,12 +45,18 @@ public class WorldRenderer {
     static final float FRUSTUM_WIDTH = 20;
     static final float FRUSTUM_HEIGHT = 15;
 
+    private BitmapFont font;
+
 
     public WorldRenderer (SpriteBatch batch, GameWorld world) {
         this.world = world;
         this.cam = new OrthographicCamera(FRUSTUM_WIDTH, FRUSTUM_HEIGHT);
         this.cam.position.set(FRUSTUM_WIDTH / 2, FRUSTUM_HEIGHT / 2, 0);
         this.batch = batch;
+
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(0.1f);
     }
 
     public void render () {
@@ -124,21 +132,22 @@ public class WorldRenderer {
     }
 
     private void renderIndicator() {
+
+        if( world.percent > 0) {
+            float part = ((float) world.percent) / 100;
+
+            int length = ((int) (Assets.indicatorFull.getWidth() * part));
+
+            TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, 0, 0, length, 55);
+            batch.draw(indicatorRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2 + Indicator.INDICATOR_WIDTH * (1f - part) + 0.2f,
+                    world.indicator.position.y - Indicator.INDICATOR_HEIGHT / 2 + 0.65f,
+                    Indicator.INDICATOR_WIDTH * part - 0.6f, Indicator.INDICATOR_HEIGHT * 0.36f + 0.05f);
+        }
+
         batch.draw( Assets.indicatorEmptyRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2, world.indicator.position.y - Indicator.INDICATOR_HEIGHT/2,
-                    Indicator.INDICATOR_WIDTH, Indicator.INDICATOR_HEIGHT + 0.1f);
+                Indicator.INDICATOR_WIDTH, Indicator.INDICATOR_HEIGHT + 0.1f);
 
-        if( world.percent == 0)
-            return;
-
-
-        float part = ((float)world.percent)/100;
-
-        int length = ((int)(Assets.indicatorFull.getWidth()*part));
-
-        TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, 0, 0, length, 55);
-        batch.draw( indicatorRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2 + Indicator.INDICATOR_WIDTH*(1f - part) + 0.2f,
-                world.indicator.position.y - Indicator.INDICATOR_HEIGHT/2 + 0.65f,
-                Indicator.INDICATOR_WIDTH*part - 0.6f, Indicator.INDICATOR_HEIGHT*0.36f + 0.05f);
+        //font.draw(batch, "score : " + world.score, 3, 13);
     }
 
     private void renderBrokenObjects() {
@@ -191,7 +200,7 @@ public class WorldRenderer {
                     }
                 } else if (obj instanceof Plate) {
                     if(obj.broken) {
-                        batch.draw(Assets.brokenPlateRegion, obj.position.x - Plate.PLATE_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Plate.PLATE_HEIGHT + 0.35f,
+                        batch.draw(Assets.brokenPlateRegion, obj.position.x - Plate.PLATE_WIDTH / 2 + 0.2f, obj.position.y - Plate.PLATE_HEIGHT/2,
                                 Plate.PLATE_WIDTH, Plate.PLATE_HEIGHT);
                     }
                 }

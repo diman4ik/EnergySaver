@@ -51,8 +51,12 @@ public class GameScreen  extends ScreenAdapter {
                 renderer.cam.unproject(touchPoint);
                 if (world.lightning.touched(touchPoint)) {
 
-                    if (world.lightning.visible)
+                    if (world.lightning.visible) {
                         succeded += 1;
+                        world.score += 20;
+                        world.percent += 20;
+
+                    }
 
                     world.lightning.setVisibility(false);
                     world.lightningTime = 0;
@@ -68,6 +72,8 @@ public class GameScreen  extends ScreenAdapter {
                         else {
                             win = true;
                         }
+
+                        succeded = 0;
                     }
 
                     return;

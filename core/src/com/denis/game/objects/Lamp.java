@@ -7,7 +7,7 @@ import com.denis.game.GameObject;
  */
 public class Lamp extends GameObject {
     public static final float LAMP_WIDTH = 2.4f;
-    public static final float LAMP_HEIGHT = 9.0f;
+    public static final float LAMP_HEIGHT = 9.5f;
 
     public Lamp(float x, float y) {
         super(x, y, LAMP_WIDTH, LAMP_HEIGHT);

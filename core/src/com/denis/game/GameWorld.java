@@ -40,7 +40,6 @@ public class GameWorld {
     public Lightning lightning;
     public Boom boom;
     public Indicator indicator;
-    //public Array<GameObject> brokenObjects = new Array<GameObject>();
     public Array<GameObject> gameObjects = new Array<GameObject>();
     int [] boomIndexes = new int [] { -1, -1, -1 };
 
@@ -55,7 +54,8 @@ public class GameWorld {
 
     public int level = 1;
 
-    public int percent = 60;
+    public int percent = 0;
+    public int score = 100;
 
     boolean update = true;
 
@@ -67,10 +67,12 @@ public class GameWorld {
         boom.setVisibility(false);
         indicator = new Indicator(3, 14);
 
-        /*for( int i = 0; i < 8; i++ ) {
-            addBrokenObject(i);
-        }*/
         setLevel(4);
+
+        for( int i = 0; i < gameObjects.size; i++ ) {
+            addBrokenObject(i);
+        }
+
         stop();
     }
 
@@ -124,10 +126,10 @@ public class GameWorld {
             new Vector2(10, 5),
             new Vector2(15f, 9),
             new Vector2(17f, 7),
-            new Vector2(5f, 8.5f),
-            new Vector2(7f, 10f),
+            new Vector2(5f, 8.4f),
+            new Vector2(7.1f, 9.25f),
             new Vector2(8.2f, 12),
-            new Vector2(10.8f, 8),
+            new Vector2(11.05f, 7.95f),
             new Vector2(12, 14)
     };
 
@@ -209,28 +211,10 @@ public class GameWorld {
 
     public void addBrokenObject(int index) {
         if(level == 1) {
-            /*if (index == 0) {
-                brokenObjects.add(new Kettler(spawnCoords[0].x, spawnCoords[0].y));
-            } else if (index == 1) {
-                brokenObjects.add(new Microwave(spawnCoords[1].x, spawnCoords[1].y));
-            } else if (index == 2) {
-                brokenObjects.add(new Refridgerator(spawnCoords[2].x, spawnCoords[2].y));
-            } else if (index == 3) {
-                brokenObjects.add(new Toster(spawnCoords[3].x, spawnCoords[3].y));
-            } else if (index == 4) {
-                brokenObjects.add(new Plate(spawnCoords[4].x, spawnCoords[4].y));
-            } else if (index == 5) {
-                brokenObjects.add(new Blender(spawnCoords[5].x, spawnCoords[5].y));
-            } else if (index == 6) {
-                brokenObjects.add(new Lamp(spawnCoords[6].x, spawnCoords[6].y));
-            } else if (index == 7) {
-                brokenObjects.add(new Switch(spawnCoords[7].x, spawnCoords[7].y));
-            }*/
             gameObjects.get(index).setVisibility(true);
         }
-        else {
-            gameObjects.get(index).setBroken(true);
-        }
+
+        gameObjects.get(index).setBroken(true);
     }
 
     public void addBoom(int index) {
@@ -320,5 +304,7 @@ public class GameWorld {
         lightningTime = 0f;
         update = true;
         lifes = 3;
+        percent = 0;
+        score = 100;
     }
 }
