@@ -67,13 +67,14 @@ public class GameWorld {
         boom.setVisibility(false);
         indicator = new Indicator(3, 14);
 
-        setLevel(4);
+        setLevel(1);
 
-        for( int i = 0; i < gameObjects.size; i++ ) {
+        /*for( int i = 0; i < gameObjects.size; i++ ) {
             addBrokenObject(i);
-        }
+        }*/
 
-        stop();
+        //stop();
+        //percent = 90;
     }
 
     public void update(float delta) {

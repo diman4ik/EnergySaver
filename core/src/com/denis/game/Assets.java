@@ -2,8 +2,10 @@ package com.denis.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /**
  * Created by loki on 19.06.16.
@@ -195,6 +197,8 @@ public class Assets {
 
     public static Texture indicatorFull;
     public static TextureRegion indicatorFullRegion;
+
+    public static BitmapFont scoreFont;
 
 
     public static void load () {
@@ -626,6 +630,18 @@ public class Assets {
 
         indicatorFull =    loadTexture("power.png");
         indicatorFullRegion =  new TextureRegion(indicatorEmpty, 0, 0, 275, 55);
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Aller_Bd.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 12;
+        parameter.spaceX = 1;
+        parameter.characters = FreeTypeFontGenerator.DEFAULT_CHARS;
+        //e.g. abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.!'()>?:
+        // These characters should not repeat!
+
+        scoreFont = generator.generateFont(parameter);
+        //font.setColor(Color.WHITE);
+        generator.dispose();
     }
 
     public static Texture loadTexture (String file) {

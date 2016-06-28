@@ -21,7 +21,7 @@ public class GameScreen  extends ScreenAdapter {
     boolean gameover = false;
     boolean win = false;
     float endGameInterval = 0;
-    float maxEndgameInterval = 2.0f;
+    float maxEndgameInterval = 3.0f;
 
     public GameScreen(DenisGame game) {
         this.game = game;
@@ -41,7 +41,14 @@ public class GameScreen  extends ScreenAdapter {
         gl.glClearColor(0, 1, 0, 1);
 
         renderer.render();
+
         guiCam.update();
+        game.batcher.setProjectionMatrix(guiCam.combined);
+        //game.batcher.disableBlending();
+        game.batcher.enableBlending();
+        game.batcher.begin();
+        Assets.scoreFont.draw(game.batcher, "score: " + world.score, 15, 425);
+        game.batcher.end();
     }
 
     public void update(float delta) {
@@ -53,9 +60,13 @@ public class GameScreen  extends ScreenAdapter {
 
                     if (world.lightning.visible) {
                         succeded += 1;
-                        world.score += 20;
-                        world.percent += 20;
+                        if(succeded <= 5) {
+                            world.score += 20;
+                            world.percent += 20;
+                        }
 
+                        if(world.percent == 100)
+                            world.percent = 90;
                     }
 
                     world.lightning.setVisibility(false);
@@ -90,6 +101,8 @@ public class GameScreen  extends ScreenAdapter {
             endGameInterval += delta;
 
             if(endGameInterval >= maxEndgameInterval) {
+                endGameInterval = 0;
+
                 if (gameover && !win) {
                     game.setScreen(new GameoverScreen(game));
                 }

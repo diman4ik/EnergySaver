@@ -45,18 +45,12 @@ public class WorldRenderer {
     static final float FRUSTUM_WIDTH = 20;
     static final float FRUSTUM_HEIGHT = 15;
 
-    private BitmapFont font;
-
 
     public WorldRenderer (SpriteBatch batch, GameWorld world) {
         this.world = world;
         this.cam = new OrthographicCamera(FRUSTUM_WIDTH, FRUSTUM_HEIGHT);
         this.cam.position.set(FRUSTUM_WIDTH / 2, FRUSTUM_HEIGHT / 2, 0);
         this.batch = batch;
-
-        font = new BitmapFont();
-        font.setColor(Color.WHITE);
-        font.getData().setScale(0.1f);
     }
 
     public void render () {
@@ -139,15 +133,13 @@ public class WorldRenderer {
             int length = ((int) (Assets.indicatorFull.getWidth() * part));
 
             TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, 0, 0, length, 55);
-            batch.draw(indicatorRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2 + Indicator.INDICATOR_WIDTH * (1f - part) + 0.2f,
+            batch.draw(indicatorRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2 + Indicator.INDICATOR_WIDTH * (1f - part),
                     world.indicator.position.y - Indicator.INDICATOR_HEIGHT / 2 + 0.65f,
                     Indicator.INDICATOR_WIDTH * part - 0.6f, Indicator.INDICATOR_HEIGHT * 0.36f + 0.05f);
         }
 
         batch.draw( Assets.indicatorEmptyRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2, world.indicator.position.y - Indicator.INDICATOR_HEIGHT/2,
                 Indicator.INDICATOR_WIDTH, Indicator.INDICATOR_HEIGHT + 0.1f);
-
-        //font.draw(batch, "score : " + world.score, 3, 13);
     }
 
     private void renderBrokenObjects() {

@@ -22,4 +22,9 @@ public class DenisGame extends Game {
 	public void render() {
 		super.render();
 	}
+
+	@Override
+	public void dispose() {
+		Assets.scoreFont.dispose();
+	}
 }
