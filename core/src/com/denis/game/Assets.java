@@ -369,7 +369,7 @@ public class Assets {
             lightningFrames[23] = lightning24Region;
         }
 
-        lightningAnimation = new Animation(0.2f, lightningFrames);
+        lightningAnimation = new Animation(0.1f, lightningFrames);
 
         {
             Texture boom1 = loadTexture("boom/boom0001.png");
