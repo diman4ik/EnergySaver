@@ -1,7 +1,5 @@
 package com.denis.game;
 
-import com.badlogic.gdx.math.Vector3;
-
 /**
  * Created by loki on 6/21/16.
  */
@@ -10,7 +8,7 @@ public class Boom extends GameObject  {
     public static final float BOOM_WIDTH = 4.0f;
     public static final float BOOM_HEIGHT = 3.0f;
 
-    public final float MAX_BOOM_TIME = 1.7f;
+    public final float MAX_BOOM_TIME = 1.8f;
 
     public float time;
 

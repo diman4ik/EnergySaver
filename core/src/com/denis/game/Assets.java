@@ -2,9 +2,9 @@ package com.denis.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /**
@@ -200,6 +200,7 @@ public class Assets {
     public static TextureRegion indicatorFullRegion;
 
     public static BitmapFont scoreFont;
+    public static BitmapFont scoreFontBig;
 
 
     public static void load () {
@@ -631,16 +632,18 @@ public class Assets {
         indicatorEmptyRegion = new TextureRegion(indicatorEmpty, 0, 0, 364, 136);
 
         indicatorFull =    loadTexture("power.png");
-        indicatorFullRegion =  new TextureRegion(indicatorEmpty, 0, 0, 275, 55);
+        indicatorFullRegion =  new TextureRegion(indicatorFull, 0, 0, 275, 55);
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("LeType - ClioXSUltraBlackOb-UltraBlack.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 12;
+        parameter.size = 16;
         parameter.characters = FreeTypeFontGenerator.DEFAULT_CHARS;
         //e.g. abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.!'()>?:
         // These characters should not repeat!
 
         scoreFont = generator.generateFont(parameter);
+        parameter.size = 22;
+        scoreFontBig = generator.generateFont(parameter);
         //font.setColor(Color.WHITE);
         generator.dispose();
     }

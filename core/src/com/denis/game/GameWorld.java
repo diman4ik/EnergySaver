@@ -77,8 +77,8 @@ public class GameWorld {
             addBrokenObject(i);
         }*/
 
-        //stop();
-        //percent = 70;
+        stop();
+        percent = 50;
 
         //ScoreOut sout = new ScoreOut( spawnCoords[0].x, spawnCoords[0].y, curScore);
         //flyingScores.add(sout);

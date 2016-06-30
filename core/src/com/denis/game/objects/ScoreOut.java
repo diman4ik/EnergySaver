@@ -12,7 +12,7 @@ public class ScoreOut extends GameObject {
     public static final float LIFT_VELOCITY = 1f;
 
     public int score = 0;
-    public int opacity = 100;
+    private int opacity = 200;
 
     public ScoreOut(float x, float y, int score) {
         super(x, y, SCOREOUT_WIDTH, SCOREOUT_HEIGHT);
@@ -27,5 +27,9 @@ public class ScoreOut extends GameObject {
         }
         else
             opacity = 0;
+    }
+
+    public int getOpacity() {
+        return opacity/2;
     }
 }

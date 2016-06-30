@@ -23,7 +23,10 @@ public class GameScreen  extends ScreenAdapter {
     float endGameInterval = 0;
     float maxEndgameInterval = 3.0f;
 
-    public static final float WIDTH = 320;
+    //public static final float WIDTH = 320;
+    //public static final float HEIGHT = 480;
+
+    public static final float WIDTH = 800;
     public static final float HEIGHT = 480;
 
     public GameScreen(DenisGame game) {
@@ -50,8 +53,8 @@ public class GameScreen  extends ScreenAdapter {
         //game.batcher.disableBlending();
         game.batcher.enableBlending();
         game.batcher.begin();
-        Assets.scoreFont.setColor(1, 1, 1, 1);
-        Assets.scoreFont.draw(game.batcher, "score: " + world.score, 15, 425);
+        Assets.scoreFontBig.setColor(1, 1, 1, 1);
+        Assets.scoreFontBig.draw(game.batcher, "score: " + world.score, 40, 420);
         renderer.renderFlyingScores();
         game.batcher.end();
     }
@@ -60,24 +63,26 @@ public class GameScreen  extends ScreenAdapter {
         if(!gameover && !win) {
             if (Gdx.input.isTouched()) {
                 touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+                Vector3 touchPointTr = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+                guiCam.unproject(touchPointTr);
                 renderer.cam.unproject(touchPoint);
                 if (world.lightning.touched(touchPoint)) {
 
                     if (world.lightning.visible) {
                         succeded += 1;
 
-                        Assets.pointMusic.setVolume(0.6f);
+                        Assets.pointMusic.setVolume(0.5f);
                         Assets.pointMusic.play();
 
                         if(succeded <= 5) {
-                            world.score += 20;
+                            world.score += world.curScore;
                             world.percent += 20;
                         }
 
                         if(world.percent == 100)
                             world.percent = 90;
 
-                        world.addflyingScore(touchPoint);
+                        world.addflyingScore(touchPointTr);
                     }
 
                     world.lightning.setVisibility(false);
@@ -121,6 +126,7 @@ public class GameScreen  extends ScreenAdapter {
                     game.setScreen(new WinScreen(game));
                 }
                 else {
+                    world.curScore = 100;
                     world.setLevel(world.level + 1);
                     win = false;
                 }

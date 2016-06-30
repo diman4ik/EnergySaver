@@ -1,11 +1,8 @@
 package com.denis.game;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.denis.game.objects.Air;
 import com.denis.game.objects.Blender;
 import com.denis.game.objects.Fan;
@@ -90,8 +87,8 @@ public class WorldRenderer {
         batch.begin();
         renderLifes(world.lifes);
         renderBrokenObjects();
-        renderBoom();
         renderLightning();
+        renderBoom();
         renderIndicator();
         batch.end();
     }
@@ -132,12 +129,14 @@ public class WorldRenderer {
         if( world.percent > 0) {
             float part = ((float) world.percent) / 100;
 
-            int length = ((int) (Assets.indicatorFull.getWidth() * part));
+            int start = 275 - ((int) (Assets.indicatorFull.getWidth() * part));
 
-            TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, 0, 0, length, 55);
-            batch.draw(indicatorRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2 + Indicator.INDICATOR_WIDTH * (1f - part),
+            TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, start, 0, 275, 55);
+            float width = Indicator.INDICATOR_WIDTH*0.8f;
+            float image_width = width*part;
+            batch.draw(indicatorRegion, world.indicator.position.x - width / 2 + width * (1f - part),
                     world.indicator.position.y - Indicator.INDICATOR_HEIGHT / 2 + 0.65f,
-                    Indicator.INDICATOR_WIDTH * part - 0.6f, Indicator.INDICATOR_HEIGHT * 0.36f + 0.05f);
+                    Indicator.INDICATOR_WIDTH*part, Indicator.INDICATOR_HEIGHT * 0.36f + 0.05f);
         }
 
         batch.draw( Assets.indicatorEmptyRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2, world.indicator.position.y - Indicator.INDICATOR_HEIGHT/2,
@@ -384,24 +383,13 @@ public class WorldRenderer {
 
     public void renderFlyingScores() {
         for(ScoreOut scout : world.flyingScores) {
-            if(scout.opacity == 0) {
+            if(scout.getOpacity() == 0) {
                 world.flyingScores.removeValue(scout, true);
                 continue;
             }
 
-            //Vector2 pos = convertCoords(scout.position.x, scout.position.y);
-
-            Assets.scoreFont.setColor(1, 1, 1, ((float)scout.opacity)/100);
+            Assets.scoreFont.setColor(1, 1, 1, ((float)scout.getOpacity())/100);
             Assets.scoreFont.draw(batch, "+" + Integer.toString(scout.score), scout.position.x, scout.position.y);
         }
     }
-
-    /*Vector2 convertCoords(float x, float y) {
-        Vector2 ret = new Vector2();
-
-        ret.x = (GameScreen.WIDTH / FRUSTUM_WIDTH) * x;
-        ret.y = (GameScreen.HEIGHT / FRUSTUM_HEIGHT) * y;
-
-        return ret;
-    }*/
 }
