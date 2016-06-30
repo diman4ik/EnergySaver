@@ -7,11 +7,12 @@ import com.denis.game.GameObject;
  */
 public class ScoreOut extends GameObject {
     public static final float SCOREOUT_WIDTH = 2f;
-    public static final float SCOREOUT_HEIGHT = 5f;
+    public static final float SCOREOUT_HEIGHT = 2f;
 
     public static final float LIFT_VELOCITY = 1f;
 
     public int score = 0;
+    public int opacity = 100;
 
     public ScoreOut(float x, float y, int score) {
         super(x, y, SCOREOUT_WIDTH, SCOREOUT_HEIGHT);
@@ -20,5 +21,11 @@ public class ScoreOut extends GameObject {
 
     public void lift() {
         setPosition(position.x, position.y + LIFT_VELOCITY);
+
+        if(opacity > 0) {
+            opacity -= 1;
+        }
+        else
+            opacity = 0;
     }
 }

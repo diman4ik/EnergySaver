@@ -33,6 +33,7 @@ public class Assets {
     public static Music roomMusic;
     public static Music lightningMusic;
     public static Music boomMusic;
+    public static Music pointMusic;
 
     public static Animation lightningAnimation;
     public static TextureRegion [] lightningFrames = new TextureRegion[24];
@@ -478,6 +479,7 @@ public class Assets {
         roomMusic = Gdx.audio.newMusic(Gdx.files.internal("roomsound.mp3"));
         lightningMusic = Gdx.audio.newMusic(Gdx.files.internal("electric.mp3"));
         boomMusic = Gdx.audio.newMusic(Gdx.files.internal("boom.mp3"));
+        pointMusic = Gdx.audio.newMusic(Gdx.files.internal("pointsound.mp3"));
 
         life = loadTexture("heart_fill.png");
         lifeRegion = new TextureRegion(life, 0, 0, 83, 77);
@@ -631,10 +633,9 @@ public class Assets {
         indicatorFull =    loadTexture("power.png");
         indicatorFullRegion =  new TextureRegion(indicatorEmpty, 0, 0, 275, 55);
 
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Aller_Bd.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("LeType - ClioXSUltraBlackOb-UltraBlack.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 12;
-        parameter.spaceX = 1;
         parameter.characters = FreeTypeFontGenerator.DEFAULT_CHARS;
         //e.g. abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.!'()>?:
         // These characters should not repeat!

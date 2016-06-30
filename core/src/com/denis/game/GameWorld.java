@@ -1,6 +1,7 @@
 package com.denis.game;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.denis.game.objects.Air;
 import com.denis.game.objects.Blender;
@@ -24,6 +25,7 @@ import com.denis.game.objects.R4Switch;
 import com.denis.game.objects.R4TV;
 import com.denis.game.objects.Radio;
 import com.denis.game.objects.Refridgerator;
+import com.denis.game.objects.ScoreOut;
 import com.denis.game.objects.SoundLeft;
 import com.denis.game.objects.SoundRight;
 import com.denis.game.objects.Switch;
@@ -41,6 +43,7 @@ public class GameWorld {
     public Boom boom;
     public Indicator indicator;
     public Array<GameObject> gameObjects = new Array<GameObject>();
+    public Array<ScoreOut> flyingScores = new Array<ScoreOut>();
     int [] boomIndexes = new int [] { -1, -1, -1 };
 
     public final float lightningSpawnInterval = 6f;
@@ -55,7 +58,8 @@ public class GameWorld {
     public int level = 1;
 
     public int percent = 0;
-    public int score = 100;
+    public int score = 100; // Общее количество очков
+    public int curScore = 100;// Текущее количество очков
 
     boolean update = true;
 
@@ -74,7 +78,10 @@ public class GameWorld {
         }*/
 
         //stop();
-        //percent = 90;
+        //percent = 70;
+
+        //ScoreOut sout = new ScoreOut( spawnCoords[0].x, spawnCoords[0].y, curScore);
+        //flyingScores.add(sout);
     }
 
     public void update(float delta) {
@@ -108,7 +115,11 @@ public class GameWorld {
             }
 
             boom.update(delta);
-            lightning.update(delta);/**/
+            lightning.update(delta);
+
+            for( ScoreOut scout : flyingScores) {
+                scout.lift();
+            }
         }
     }
 
@@ -229,8 +240,15 @@ public class GameWorld {
         boom.setPosition( spawnCoords[index].x, spawnCoords[index].y);
         boom.time = 0;
         boom.setVisibility(true);
-        Assets.lightningMusic.setVolume(0.6f);
+        Assets.boomMusic.setVolume(0.6f);
         Assets.boomMusic.play();
+    }
+
+    public void addflyingScore(Vector3 touch) {
+        ScoreOut sout = new ScoreOut( touch.x, touch.y, curScore);
+        curScore += 20;
+
+        flyingScores.add(sout);
     }
 
     public void setLevel(int level) {

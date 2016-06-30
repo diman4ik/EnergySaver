@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.denis.game.objects.Air;
 import com.denis.game.objects.Blender;
 import com.denis.game.objects.Fan;
@@ -27,6 +28,7 @@ import com.denis.game.objects.R4Switch;
 import com.denis.game.objects.R4TV;
 import com.denis.game.objects.Radio;
 import com.denis.game.objects.Refridgerator;
+import com.denis.game.objects.ScoreOut;
 import com.denis.game.objects.SoundLeft;
 import com.denis.game.objects.SoundRight;
 import com.denis.game.objects.Switch;
@@ -379,4 +381,27 @@ public class WorldRenderer {
             }
         }
     }
+
+    public void renderFlyingScores() {
+        for(ScoreOut scout : world.flyingScores) {
+            if(scout.opacity == 0) {
+                world.flyingScores.removeValue(scout, true);
+                continue;
+            }
+
+            //Vector2 pos = convertCoords(scout.position.x, scout.position.y);
+
+            Assets.scoreFont.setColor(1, 1, 1, ((float)scout.opacity)/100);
+            Assets.scoreFont.draw(batch, "+" + Integer.toString(scout.score), scout.position.x, scout.position.y);
+        }
+    }
+
+    /*Vector2 convertCoords(float x, float y) {
+        Vector2 ret = new Vector2();
+
+        ret.x = (GameScreen.WIDTH / FRUSTUM_WIDTH) * x;
+        ret.y = (GameScreen.HEIGHT / FRUSTUM_HEIGHT) * y;
+
+        return ret;
+    }*/
 }

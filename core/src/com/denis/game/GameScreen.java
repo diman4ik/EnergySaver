@@ -23,11 +23,14 @@ public class GameScreen  extends ScreenAdapter {
     float endGameInterval = 0;
     float maxEndgameInterval = 3.0f;
 
+    public static final float WIDTH = 320;
+    public static final float HEIGHT = 480;
+
     public GameScreen(DenisGame game) {
         this.game = game;
 
-        guiCam = new OrthographicCamera(320, 480);
-        guiCam.position.set(320 / 2, 480 / 2, 0);
+        guiCam = new OrthographicCamera(WIDTH, HEIGHT);
+        guiCam.position.set(WIDTH / 2, HEIGHT / 2, 0);
         touchPoint = new Vector3();
         world = new GameWorld();
         renderer = new WorldRenderer(game.batcher, world);
@@ -47,7 +50,9 @@ public class GameScreen  extends ScreenAdapter {
         //game.batcher.disableBlending();
         game.batcher.enableBlending();
         game.batcher.begin();
+        Assets.scoreFont.setColor(1, 1, 1, 1);
         Assets.scoreFont.draw(game.batcher, "score: " + world.score, 15, 425);
+        renderer.renderFlyingScores();
         game.batcher.end();
     }
 
@@ -60,6 +65,10 @@ public class GameScreen  extends ScreenAdapter {
 
                     if (world.lightning.visible) {
                         succeded += 1;
+
+                        Assets.pointMusic.setVolume(0.6f);
+                        Assets.pointMusic.play();
+
                         if(succeded <= 5) {
                             world.score += 20;
                             world.percent += 20;
@@ -67,6 +76,8 @@ public class GameScreen  extends ScreenAdapter {
 
                         if(world.percent == 100)
                             world.percent = 90;
+
+                        world.addflyingScore(touchPoint);
                     }
 
                     world.lightning.setVisibility(false);
