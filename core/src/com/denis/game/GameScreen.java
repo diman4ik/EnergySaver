@@ -71,16 +71,13 @@ public class GameScreen  extends ScreenAdapter {
                     if (world.lightning.visible) {
                         succeded += 1;
 
-                        Assets.pointMusic.setVolume(0.5f);
+                        Assets.pointMusic.setVolume(0.3f);
                         Assets.pointMusic.play();
 
-                        if(succeded <= 5) {
+                        if(succeded <= 20) {
                             world.score += world.curScore;
-                            world.percent += 20;
+                            world.percent += 5;
                         }
-
-                        if(world.percent == 100)
-                            world.percent = 90;
 
                         world.addflyingScore(touchPointTr);
                     }
@@ -89,7 +86,7 @@ public class GameScreen  extends ScreenAdapter {
                     world.lightningTime = 0;
                     Assets.lightningMusic.stop();
 
-                    if (succeded >= 5) {
+                    if (succeded >= 20) {
                         world.stop();
 
                         if(world.level == 4) {
@@ -120,13 +117,13 @@ public class GameScreen  extends ScreenAdapter {
                 endGameInterval = 0;
 
                 if (gameover && !win) {
+                    world.curScore = 100;
                     game.setScreen(new GameoverScreen(game));
                 }
                 else if(gameover && win){
                     game.setScreen(new WinScreen(game));
                 }
                 else {
-                    world.curScore = 100;
                     world.setLevel(world.level + 1);
                     win = false;
                 }

@@ -1,8 +1,10 @@
 package com.denis.game;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.denis.game.objects.Air;
 import com.denis.game.objects.Blender;
 import com.denis.game.objects.Fan;
@@ -129,14 +131,24 @@ public class WorldRenderer {
         if( world.percent > 0) {
             float part = ((float) world.percent) / 100;
 
-            int start = 275 - ((int) (Assets.indicatorFull.getWidth() * part));
+            int lotalLength = Assets.indicatorFull.getWidth();
 
-            TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, start, 0, 275, 55);
-            float width = Indicator.INDICATOR_WIDTH*0.8f;
+            int start = lotalLength - ((int) (lotalLength * part));
+
+            TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, start, 0, lotalLength - start, 55);
+            float width = Indicator.INDICATOR_WIDTH*0.82f;
             float image_width = width*part;
             batch.draw(indicatorRegion, world.indicator.position.x - width / 2 + width * (1f - part),
-                    world.indicator.position.y - Indicator.INDICATOR_HEIGHT / 2 + 0.65f,
-                    Indicator.INDICATOR_WIDTH*part, Indicator.INDICATOR_HEIGHT * 0.36f + 0.05f);
+                    world.indicator.position.y - Indicator.INDICATOR_HEIGHT / 3f + 0.15f,
+                    width*part, Indicator.INDICATOR_HEIGHT/2);
+
+            /*ShapeRenderer shapeRenderer = new ShapeRenderer();
+            shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+            shapeRenderer.setColor(Color.BLACK);
+            shapeRenderer.rect( world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2,
+                                world.indicator.position.y - Indicator.INDICATOR_HEIGHT / 2, Indicator.INDICATOR_WIDTH, Indicator.INDICATOR_HEIGHT);
+            shapeRenderer.end();*/
         }
 
         batch.draw( Assets.indicatorEmptyRegion, world.indicator.position.x - Indicator.INDICATOR_WIDTH / 2, world.indicator.position.y - Indicator.INDICATOR_HEIGHT/2,
@@ -173,7 +185,13 @@ public class WorldRenderer {
                     }
                 } else if (obj instanceof Lamp) {
                     if(obj.broken) {
-                        batch.draw(Assets.brokenLampRegion, obj.position.x - Lamp.LAMP_WIDTH / 2 - 0.2f, obj.position.y - 0.6f * Lamp.LAMP_HEIGHT + 0.55f,
+                        /*ShapeRenderer shapeRenderer = new ShapeRenderer();
+                        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+                        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+                        shapeRenderer.setColor(Color.BLACK);
+                        shapeRenderer.rect( obj.position.x - Lamp.LAMP_WIDTH / 2 - 0.35f, obj.position.y - Lamp.LAMP_HEIGHT / 2 - 0.3f, Lamp.LAMP_WIDTH, Lamp.LAMP_HEIGHT);
+                        shapeRenderer.end();*/
+                        batch.draw(Assets.brokenLampRegion, obj.position.x - Lamp.LAMP_WIDTH / 2 - 0.35f, obj.position.y - Lamp.LAMP_HEIGHT / 2 - 0.3f,
                                 Lamp.LAMP_WIDTH, Lamp.LAMP_HEIGHT);
                     }
                 } else if (obj instanceof Switch) {

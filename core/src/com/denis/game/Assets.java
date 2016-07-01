@@ -494,7 +494,7 @@ public class Assets {
         brokenKettleRegion = new TextureRegion(brokenKettle, 0, 0, 72, 113);
 
         brokenLamp = loadTexture("room1/broken/lamp.png");
-        brokenLampRegion = new TextureRegion(brokenLamp, 0, 0, 223, 680);
+        brokenLampRegion = new TextureRegion(brokenLamp, 0, 0, 196, 680);
 
         brokenMicrovawe = loadTexture("room1/broken/microwave.png");
         brokenMicrovaweRegion = new TextureRegion(brokenMicrovawe, 0, 0, 190, 202);
@@ -629,7 +629,7 @@ public class Assets {
         brokenSwitch4Region =  new TextureRegion(brokenSwitch4, 0, 0, 44, 66);
 
         indicatorEmpty =    loadTexture("power_border.png");
-        indicatorEmptyRegion = new TextureRegion(indicatorEmpty, 0, 0, 364, 136);
+        indicatorEmptyRegion = new TextureRegion(indicatorEmpty, 0, 0, 334, 107);
 
         indicatorFull =    loadTexture("power.png");
         indicatorFullRegion =  new TextureRegion(indicatorFull, 0, 0, 275, 55);

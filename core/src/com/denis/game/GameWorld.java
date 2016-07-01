@@ -46,9 +46,9 @@ public class GameWorld {
     public Array<ScoreOut> flyingScores = new Array<ScoreOut>();
     int [] boomIndexes = new int [] { -1, -1, -1 };
 
-    public final float lightningSpawnInterval = 6f;
-    public final float lightningMaxInterval = 3f;
-    public float curSpawnInterval = 2.0f;
+    public final float lightningSpawnInterval = 4f;
+    public final float lightningMaxInterval = 2f;
+    public float curSpawnInterval = 1.0f;
     final Random random = new Random();
 
     float lightningTime = 0f;
@@ -77,8 +77,10 @@ public class GameWorld {
             addBrokenObject(i);
         }*/
 
-        stop();
-        percent = 50;
+        //addBrokenObject(6);
+
+        //stop();
+        //percent = 30;
 
         //ScoreOut sout = new ScoreOut( spawnCoords[0].x, spawnCoords[0].y, curScore);
         //flyingScores.add(sout);
@@ -324,6 +326,5 @@ public class GameWorld {
         update = true;
         lifes = 3;
         percent = 0;
-        score = 100;
     }
 }

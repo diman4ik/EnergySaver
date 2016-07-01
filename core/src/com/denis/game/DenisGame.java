@@ -16,6 +16,7 @@ public class DenisGame extends Game {
 		Assets.roomMusic.play();
 
 		setScreen(new StartScreen(this));
+		//setScreen(new GameScreen(this));
 	}
 
 	@Override
