@@ -19,9 +19,9 @@ public class Boom extends GameObject  {
     public void update (float deltaTime) {
         time += deltaTime;
 
-        if(time > MAX_BOOM_TIME) {
+        /*if(time > MAX_BOOM_TIME) {
             setVisibility(false);
             time = 0;
-        }
+        }*/
     }
 }

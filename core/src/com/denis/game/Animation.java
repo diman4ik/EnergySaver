@@ -38,4 +38,8 @@ public class Animation {
 
         return frameNumber;
     }
+
+    public boolean isLastFrame(float stateTime, int mode) {
+        return getKeyFrameIndex(stateTime, mode) == keyFrames.length - 1;
+    }
 }

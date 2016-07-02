@@ -54,7 +54,7 @@ public class GameScreen  extends ScreenAdapter {
         game.batcher.enableBlending();
         game.batcher.begin();
         Assets.scoreFontBig.setColor(1, 1, 1, 1);
-        Assets.scoreFontBig.draw(game.batcher, "score: " + world.score, 40, 420);
+        Assets.scoreFontBig.draw(game.batcher, "score: " + world.score, 10, 440);
         renderer.renderFlyingScores();
         game.batcher.end();
     }
@@ -68,7 +68,7 @@ public class GameScreen  extends ScreenAdapter {
                 renderer.cam.unproject(touchPoint);
                 if (world.lightning.touched(touchPoint)) {
 
-                    if (world.lightning.visible) {
+                    if (world.lightning.visible && !world.lightning.hide) {
                         succeded += 1;
 
                         Assets.pointMusic.setVolume(0.3f);
@@ -82,7 +82,7 @@ public class GameScreen  extends ScreenAdapter {
                         world.addflyingScore(touchPointTr);
                     }
 
-                    world.lightning.setVisibility(false);
+                    world.lightning.setStop(true);
                     world.lightningTime = 0;
                     Assets.lightningMusic.stop();
 
@@ -95,6 +95,7 @@ public class GameScreen  extends ScreenAdapter {
                         }
                         else {
                             win = true;
+                            world.flyingScores.clear();
                         }
 
                         succeded = 0;
@@ -112,6 +113,9 @@ public class GameScreen  extends ScreenAdapter {
         }
         else {
             endGameInterval += delta;
+
+            world.boom.setVisibility(false);
+            world.lightning.setVisibility(false);
 
             if(endGameInterval >= maxEndgameInterval) {
                 endGameInterval = 0;

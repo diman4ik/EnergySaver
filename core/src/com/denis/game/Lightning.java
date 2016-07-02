@@ -11,6 +11,7 @@ public class Lightning extends GameObject {
     public static final float LIGHTNING_HEIGHT = 2.0f;
 
     public float time;
+    public boolean hide = false;
 
     public Lightning(float x, float y) {
         super(x, y, LIGHTNING_WIDTH, LIGHTNING_HEIGHT);
@@ -22,5 +23,9 @@ public class Lightning extends GameObject {
 
     public boolean touched(Vector3 touchPoint) {
         return bounds.contains(touchPoint.x, touchPoint.y);
+    }
+
+    public void setStop(boolean hide) {
+        this.hide = hide;
     }
 }

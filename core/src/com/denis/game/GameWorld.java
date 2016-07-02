@@ -69,7 +69,7 @@ public class GameWorld {
         lightning.setVisibility(false);
         boom = new Boom(3, 3);
         boom.setVisibility(false);
-        indicator = new Indicator(3, 14);
+        indicator = new Indicator(1.5f, 14.5f);
 
         setLevel(1);
 
@@ -79,8 +79,8 @@ public class GameWorld {
 
         //addBrokenObject(6);
 
-        stop();
-        //percent = 30;
+        //stop();
+        //percent = 60;
 
         //ScoreOut sout = new ScoreOut( spawnCoords[0].x, spawnCoords[0].y, curScore);
         //flyingScores.add(sout);
@@ -211,11 +211,14 @@ public class GameWorld {
         while( index == boomIndexes[0] || index == boomIndexes[1] || index == boomIndexes[2])
             index = random.nextInt(spawnCoords.length);
 
+        //int index = 0;
+
         Vector2 spawnPoint = spawnCoords[index];
 
         prevIndex = index;
 
         lightning.setPosition(spawnPoint.x, spawnPoint.y);
+        lightning.setStop(false);
         lightning.time = 0;
         lightning.visible = true;
 
@@ -319,5 +322,9 @@ public class GameWorld {
         update = true;
         lifes = 3;
         percent = 0;
+        flyingScores.clear();
+        lightning.setVisibility(false);
+        lightning.setStop(false);
+        boom.setVisibility(false);
     }
 }

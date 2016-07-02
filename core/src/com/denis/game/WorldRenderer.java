@@ -97,20 +97,34 @@ public class WorldRenderer {
         Lightning lightning = world.lightning;
 
         if(lightning.visible) {
-            TextureRegion keyFrame = Assets.lightningAnimation.getKeyFrame(lightning.time, Animation.ANIMATION_LOOPING);
-            batch.draw(keyFrame, lightning.position.x - Lightning.LIGHTNING_WIDTH/2, lightning.position.y - Lightning.LIGHTNING_HEIGHT/2,
-                    Lightning.LIGHTNING_WIDTH, Lightning.LIGHTNING_HEIGHT);
+
+            if(!lightning.hide) {
+                TextureRegion keyFrame = Assets.lightningAnimation.getKeyFrame(lightning.time, Animation.ANIMATION_LOOPING);
+                batch.draw(keyFrame, lightning.position.x - Lightning.LIGHTNING_WIDTH / 2, lightning.position.y - Lightning.LIGHTNING_HEIGHT / 2,
+                        Lightning.LIGHTNING_WIDTH, Lightning.LIGHTNING_HEIGHT);
+            }
+            else {
+                if(!Assets.lightningAnimation.isLastFrame(lightning.time, Animation.ANIMATION_LOOPING)) {
+                    TextureRegion keyFrame = Assets.lightningAnimation.getKeyFrame(lightning.time, Animation.ANIMATION_LOOPING);
+                    batch.draw(keyFrame, lightning.position.x - Lightning.LIGHTNING_WIDTH / 2, lightning.position.y - Lightning.LIGHTNING_HEIGHT / 2,
+                            Lightning.LIGHTNING_WIDTH, Lightning.LIGHTNING_HEIGHT);
+                }
+                else {
+                    lightning.setVisibility(false);
+                    lightning.setStop(false);
+                }
+            }
         }
     }
 
     private void renderLifes(int lifes) {
 
         for( int i = 0; i < lifes; i++ ) {
-            batch.draw(Assets.lifeRegion, 16f + i, 13.5f, 1f, 1f);
+            batch.draw(Assets.lifeRegion, 16.5f + i, 13.5f, 1f, 1f);
         }
 
         for( int i = lifes; i < 3; i++ ) {
-            batch.draw(Assets.lifeEmptyRegion, 16f + lifes + (i - lifes), 13.5f, 1f, 1f);
+            batch.draw(Assets.lifeEmptyRegion, 16.5f + lifes + (i - lifes), 13.5f, 1f, 1f);
         }
     }
 
@@ -118,9 +132,13 @@ public class WorldRenderer {
         Boom boom = world.boom;
 
         if(boom.visible) {
-            TextureRegion keyFrame = Assets.boomAnimation.getKeyFrame(boom.time, Animation.ANIMATION_LOOPING);
-            batch.draw(keyFrame, boom.position.x - Boom.BOOM_WIDTH/2, boom.position.y - Boom.BOOM_HEIGHT/2,
-                    Boom.BOOM_WIDTH, Boom.BOOM_HEIGHT);
+            if(!Assets.boomAnimation.isLastFrame(boom.time, Animation.ANIMATION_NONLOOPING)) {
+                TextureRegion keyFrame = Assets.boomAnimation.getKeyFrame(boom.time, Animation.ANIMATION_NONLOOPING);
+                batch.draw(keyFrame, boom.position.x - Boom.BOOM_WIDTH / 2, boom.position.y - Boom.BOOM_HEIGHT / 2,
+                        Boom.BOOM_WIDTH, Boom.BOOM_HEIGHT);
+            }
+            else
+                boom.setVisibility(false);
         }
     }
 
@@ -133,11 +151,11 @@ public class WorldRenderer {
 
             int start = lotalLength - ((int) (lotalLength * part));
 
-            TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, start, 0, lotalLength - start, 55);
+            TextureRegion indicatorRegion = new TextureRegion(Assets.indicatorFull, 0, 0, (lotalLength - start), 55);
             float width = Indicator.INDICATOR_WIDTH*0.82f;
             float image_width = width*part;
-            batch.draw(indicatorRegion, world.indicator.position.x - width / 2 + width * (1f - part),
-                    world.indicator.position.y - Indicator.INDICATOR_HEIGHT / 3f + 0.15f,
+            batch.draw(indicatorRegion, world.indicator.position.x - width / 2 + 0.1f/*+ width * (1f - part)*/,
+                    world.indicator.position.y - Indicator.INDICATOR_HEIGHT / 3f - 0.05f,
                     width*part, Indicator.INDICATOR_HEIGHT/2);
 
             /*ShapeRenderer shapeRenderer = new ShapeRenderer();

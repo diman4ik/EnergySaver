@@ -395,7 +395,7 @@ public class Assets {
             lightningFrames[23] = lightning24Region;
         }
 
-        lightningAnimation = new Animation(0.1f, lightningFrames);
+        lightningAnimation = new Animation(0.05f, lightningFrames);
 
         {
             Texture boom1 = loadTexture("boom/boom0001.png");
@@ -499,7 +499,7 @@ public class Assets {
             boomFrames[16] = boom17Region;
         }
 
-        boomAnimation = new Animation(0.1f, boomFrames);
+        boomAnimation = new Animation(0.05f, boomFrames);
 
         roomMusic = Gdx.audio.newMusic(Gdx.files.internal("roomsound.mp3"));
         lightningMusic = Gdx.audio.newMusic(Gdx.files.internal("electric.mp3"));
@@ -682,7 +682,7 @@ public class Assets {
         indicatorFull =    loadTexture("power.png");
         indicatorFullRegion =  new TextureRegion(indicatorFull, 0, 0, 275, 55);
 
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("LeType - ClioXSUltraBlackOb-UltraBlack.otf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("TondoCorp-Signage.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 16;
         parameter.characters = FreeTypeFontGenerator.DEFAULT_CHARS;
