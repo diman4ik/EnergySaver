@@ -79,7 +79,7 @@ public class GameWorld {
 
         //addBrokenObject(6);
 
-        //stop();
+        stop();
         //percent = 30;
 
         //ScoreOut sout = new ScoreOut( spawnCoords[0].x, spawnCoords[0].y, curScore);
@@ -143,7 +143,7 @@ public class GameWorld {
             new Vector2(5f, 8.4f),
             new Vector2(7.1f, 9.25f),
             new Vector2(8.2f, 12),
-            new Vector2(11.05f, 7.95f),
+            new Vector2(11.05f, 8.95f),
             new Vector2(12, 14)
     };
 
@@ -224,10 +224,6 @@ public class GameWorld {
     }
 
     public void addBrokenObject(int index) {
-        if(level == 1) {
-            gameObjects.get(index).setVisibility(true);
-        }
-
         gameObjects.get(index).setBroken(true);
     }
 
@@ -269,9 +265,6 @@ public class GameWorld {
             gameObjects.add(new Blender(spawnCoords[5].x, spawnCoords[5].y));
             gameObjects.add(new Lamp(spawnCoords[6].x, spawnCoords[6].y));
             gameObjects.add(new Switch(spawnCoords[7].x, spawnCoords[7].y));
-
-            for(int i = 0; i < gameObjects.size; i++)
-                gameObjects.get(i).setVisibility(false);
         }
         if(level == 2) {
             spawnCoords = spawnCoordsLevel2;

@@ -1,10 +1,8 @@
 package com.denis.game;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.denis.game.objects.Air;
 import com.denis.game.objects.Blender;
 import com.denis.game.objects.Fan;
@@ -160,17 +158,29 @@ public class WorldRenderer {
             if(obj.visible) {
                 if (obj instanceof Kettler) {
                     if(obj.broken) {
-                        batch.draw(Assets.brokenKettle, obj.position.x - Kettler.KETTLER_WIDTH / 2, obj.position.y - 0.7f * Kettler.KETTLER_HEIGHT,
+                        batch.draw(Assets.brokenKettleRegion, obj.position.x - Kettler.KETTLER_WIDTH / 2, obj.position.y - 0.7f * Kettler.KETTLER_HEIGHT,
+                                Kettler.KETTLER_WIDTH, Kettler.KETTLER_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.kettleRegion, obj.position.x - Kettler.KETTLER_WIDTH / 2, obj.position.y - 0.7f * Kettler.KETTLER_HEIGHT,
                                 Kettler.KETTLER_WIDTH, Kettler.KETTLER_HEIGHT);
                     }
                 } else if (obj instanceof Microwave) {
                     if(obj.broken) {
-                        batch.draw(Assets.brokenMicrovawe, obj.position.x - Microwave.MICROWAVE_WIDTH / 2 + 0.45f, obj.position.y - 0.5f * Microwave.MICROWAVE_HEIGHT + 0.1f,
+                        batch.draw(Assets.brokenMicrovaweRegion, obj.position.x - Microwave.MICROWAVE_WIDTH / 2 + 0.45f, obj.position.y - 0.5f * Microwave.MICROWAVE_HEIGHT + 0.1f,
+                                Microwave.MICROWAVE_WIDTH, Microwave.MICROWAVE_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.microvaweRegion, obj.position.x - Microwave.MICROWAVE_WIDTH / 2 + 0.45f, obj.position.y - 0.5f * Microwave.MICROWAVE_HEIGHT + 0.1f,
                                 Microwave.MICROWAVE_WIDTH, Microwave.MICROWAVE_HEIGHT);
                     }
                 } else if (obj instanceof Blender) {
                     if(obj.broken) {
-                        batch.draw(Assets.brokenBlender, obj.position.x - Blender.BLENDER_WIDTH / 2 - 0.1f, obj.position.y - 0.9f * Blender.BLENDER_HEIGHT,
+                        batch.draw(Assets.brokenBlenderRegion, obj.position.x - Blender.BLENDER_WIDTH / 2 - 0.1f, obj.position.y - 0.9f * Blender.BLENDER_HEIGHT,
+                                Blender.BLENDER_WIDTH, Blender.BLENDER_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.blenderRegion, obj.position.x - Blender.BLENDER_WIDTH / 2 - 0.1f, obj.position.y - 0.9f * Blender.BLENDER_HEIGHT,
                                 Blender.BLENDER_WIDTH, Blender.BLENDER_HEIGHT);
                     }
                 } else if (obj instanceof Refridgerator) {
@@ -178,20 +188,27 @@ public class WorldRenderer {
                         batch.draw(Assets.brokenRefrigeratorRegion, obj.position.x - Refridgerator.REFRIDGERATOR_WIDTH / 2 + 0.65f, obj.position.y - 0.5f * Refridgerator.REFRIDGERATOR_HEIGHT + 0.35f,
                                 Refridgerator.REFRIDGERATOR_WIDTH, Refridgerator.REFRIDGERATOR_HEIGHT);
                     }
+                    else {
+                        batch.draw(Assets.refrigeratorRegion, obj.position.x - Refridgerator.REFRIDGERATOR_WIDTH / 2 + 0.65f, obj.position.y - 0.5f * Refridgerator.REFRIDGERATOR_HEIGHT + 0.35f,
+                                Refridgerator.REFRIDGERATOR_WIDTH, Refridgerator.REFRIDGERATOR_HEIGHT);
+
+                    }
                 } else if (obj instanceof Toster) {
                     if(obj.broken) {
                         batch.draw(Assets.brokenTosterRegion, obj.position.x - Toster.TOSTER_WIDTH / 2 - 0.1f, obj.position.y - 0.35f * Toster.TOSTER_HEIGHT + 0.1f,
                                 Toster.TOSTER_WIDTH, Toster.TOSTER_HEIGHT);
                     }
+                    else {
+                        batch.draw(Assets.tosterRegion, obj.position.x - Toster.TOSTER_WIDTH / 2 - 0.1f, obj.position.y - 0.35f * Toster.TOSTER_HEIGHT + 0.1f,
+                                Toster.TOSTER_WIDTH, Toster.TOSTER_HEIGHT);
+                    }
                 } else if (obj instanceof Lamp) {
                     if(obj.broken) {
-                        /*ShapeRenderer shapeRenderer = new ShapeRenderer();
-                        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-                        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-                        shapeRenderer.setColor(Color.BLACK);
-                        shapeRenderer.rect( obj.position.x - Lamp.LAMP_WIDTH / 2 - 0.35f, obj.position.y - Lamp.LAMP_HEIGHT / 2 - 0.3f, Lamp.LAMP_WIDTH, Lamp.LAMP_HEIGHT);
-                        shapeRenderer.end();*/
-                        batch.draw(Assets.brokenLampRegion, obj.position.x - Lamp.LAMP_WIDTH / 2 - 0.35f, obj.position.y - Lamp.LAMP_HEIGHT / 2 - 0.3f,
+                        batch.draw(Assets.brokenLampRegion, obj.position.x - Lamp.LAMP_WIDTH / 2 - 0.2f, obj.position.y - Lamp.LAMP_HEIGHT/2,
+                                Lamp.LAMP_WIDTH, Lamp.LAMP_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.lampRegion, obj.position.x - Lamp.LAMP_WIDTH / 2 - 0.2f, obj.position.y - Lamp.LAMP_HEIGHT/2,
                                 Lamp.LAMP_WIDTH, Lamp.LAMP_HEIGHT);
                     }
                 } else if (obj instanceof Switch) {
@@ -206,12 +223,22 @@ public class WorldRenderer {
                         }
                     }
                     else {
-                        batch.draw(Assets.switchRegion, obj.position.x - Switch.SWITCH_WIDTH / 2 - 0.1f, obj.position.y - 0.5f * Switch.SWITCH_HEIGHT - 0.2f,
-                                Switch.SWITCH_WIDTH, Switch.SWITCH_HEIGHT);
+                        if(world.level == 1) {
+                            batch.draw(Assets.switch1Region, obj.position.x - Switch.SWITCH_WIDTH / 2 - 0.1f, obj.position.y - 0.5f * Switch.SWITCH_HEIGHT - 0.2f,
+                                    Switch.SWITCH_WIDTH, Switch.SWITCH_HEIGHT);
+                        }
+                        else {
+                            batch.draw(Assets.switchRegion, obj.position.x - Switch.SWITCH_WIDTH / 2 - 0.1f, obj.position.y - 0.5f * Switch.SWITCH_HEIGHT - 0.2f,
+                                    Switch.SWITCH_WIDTH, Switch.SWITCH_HEIGHT);
+                        }
                     }
                 } else if (obj instanceof Plate) {
                     if(obj.broken) {
                         batch.draw(Assets.brokenPlateRegion, obj.position.x - Plate.PLATE_WIDTH / 2 + 0.2f, obj.position.y - Plate.PLATE_HEIGHT/2,
+                                Plate.PLATE_WIDTH, Plate.PLATE_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.plateRegion, obj.position.x - Plate.PLATE_WIDTH / 2 + 0.2f, obj.position.y - Plate.PLATE_HEIGHT/2,
                                 Plate.PLATE_WIDTH, Plate.PLATE_HEIGHT);
                     }
                 }

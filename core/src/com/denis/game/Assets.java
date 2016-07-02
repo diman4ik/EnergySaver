@@ -52,29 +52,53 @@ public class Assets {
     public static Texture restartButton;
     public static TextureRegion restartButtonRegion;
 
+    public static Texture blender;
+    public static TextureRegion blenderRegion;
+
     public static Texture brokenBlender;
     public static TextureRegion brokenBlenderRegion;
+
+    public static Texture kettle;
+    public static TextureRegion kettleRegion;
 
     public static Texture brokenKettle;
     public static TextureRegion brokenKettleRegion;
 
+    public static Texture lamp;
+    public static TextureRegion lampRegion;
+
     public static Texture brokenLamp;
     public static TextureRegion brokenLampRegion;
+
+    public static Texture microvawe;
+    public static TextureRegion microvaweRegion;
 
     public static Texture brokenMicrovawe;
     public static TextureRegion brokenMicrovaweRegion;
 
+    public static Texture plate;
+    public static TextureRegion plateRegion;
+
     public static Texture brokenPlate;
     public static TextureRegion brokenPlateRegion;
 
+    public static Texture refrigerator;
+    public static TextureRegion refrigeratorRegion;
+
     public static Texture brokenRefrigerator;
     public static TextureRegion brokenRefrigeratorRegion;
+
+    public static Texture switcher1;
+    public static TextureRegion switch1Region;
 
     public static Texture brokenSwitch;
     public static TextureRegion brokenSwitchRegion;
 
     public static Texture switcher;
     public static TextureRegion switchRegion;
+
+    public static Texture toster;
+    public static TextureRegion tosterRegion;
 
     public static Texture brokenToster;
     public static TextureRegion brokenTosterRegion;
@@ -209,7 +233,7 @@ public class Assets {
         startButton = loadTexture("start_but.png");
         startButtonRegion = new TextureRegion(startBackground, 0, 0, 507, 134);
 
-        room1Background = loadTexture("room1/room1_example.png");
+        room1Background = loadTexture("room1/room1.png");
         room1BackgroundRegion = new TextureRegion(room1Background, 0, 0, 1920, 1080);
 
         room2Background = loadTexture("room2/room2.png");
@@ -487,23 +511,44 @@ public class Assets {
         lifeEmpty = loadTexture("heart.png");
         lifeEmptyRegion = new TextureRegion(lifeEmpty, 0, 0, 83, 77);
 
+        blender = loadTexture("room1/normal/blender.png");
+        blenderRegion =  new TextureRegion(blender, 76, 138);
+
         brokenBlender = loadTexture("room1/broken/blender.png");
         brokenBlenderRegion = new TextureRegion(brokenBlender, 0, 0, 76, 138);
+
+        kettle = loadTexture("room1/normal/kettle.png");
+        kettleRegion = new TextureRegion(kettle, 0, 0, 72, 113);
 
         brokenKettle = loadTexture("room1/broken/kettle.png");
         brokenKettleRegion = new TextureRegion(brokenKettle, 0, 0, 72, 113);
 
+        lamp = loadTexture("room1/normal/lamp.png");
+        lampRegion = new TextureRegion(lamp, 0, 0, 196, 680);
+
         brokenLamp = loadTexture("room1/broken/lamp.png");
         brokenLampRegion = new TextureRegion(brokenLamp, 0, 0, 196, 680);
+
+        microvawe = loadTexture("room1/normal/microwave.png");
+        microvaweRegion = new TextureRegion(microvawe, 0, 0, 190, 202);
 
         brokenMicrovawe = loadTexture("room1/broken/microwave.png");
         brokenMicrovaweRegion = new TextureRegion(brokenMicrovawe, 0, 0, 190, 202);
 
+        plate = loadTexture("room1/normal/plate.png");;
+        plateRegion =  new TextureRegion(plate, 0, 0, 220, 428);
+
         brokenPlate = loadTexture("room1/broken/plate.png");
         brokenPlateRegion = new TextureRegion(brokenPlate, 0, 0, 220, 428);
 
+        refrigerator = loadTexture("room1/normal/refrigerator.png");
+        refrigeratorRegion = new TextureRegion(refrigerator, 0, 0, 250, 624);
+
         brokenRefrigerator = loadTexture("room1/broken/refrigerator.png");
         brokenRefrigeratorRegion = new TextureRegion(brokenRefrigerator, 0, 0, 250, 624);
+
+        switcher1 = loadTexture("room1/normal/switch.png");
+        switch1Region = new TextureRegion(switcher1, 0, 0, 44, 66);
 
         brokenSwitch = loadTexture("room1/broken/switch.png");
         brokenSwitchRegion = new TextureRegion(brokenSwitch, 0, 0, 44, 66);
@@ -513,6 +558,9 @@ public class Assets {
 
         switcher = loadTexture("room2/normal/r2switch.png");
         switchRegion = new TextureRegion(switcher, 0, 0, 45, 67);
+
+        toster = loadTexture("room1/normal/toster.png");
+        tosterRegion = new TextureRegion(toster, 0, 0, 101, 100);
 
         brokenToster = loadTexture("room1/broken/toster.png");
         brokenTosterRegion = new TextureRegion(brokenToster, 0, 0, 101, 100);
