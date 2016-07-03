@@ -21,7 +21,7 @@ public class GameScreen  extends ScreenAdapter {
     boolean gameover = false;
     boolean win = false;
     float endGameInterval = 0;
-    float maxEndgameInterval = 3.0f;
+    float maxEndgameInterval = 6.0f;
 
     //public static final float WIDTH = 320;
     //public static final float HEIGHT = 480;
@@ -103,6 +103,13 @@ public class GameScreen  extends ScreenAdapter {
 
                     return;
                 }
+                else if(world.bouncingObjectTouched(touchPoint)) {
+                    world.score += world.curScore;
+                    Assets.pointMusic.setVolume(0.3f);
+                    Assets.pointMusic.play();
+
+                    world.addflyingScore(touchPointTr);
+                }
             }
 
             world.update(delta);
@@ -116,6 +123,8 @@ public class GameScreen  extends ScreenAdapter {
 
             world.boom.setVisibility(false);
             world.lightning.setVisibility(false);
+
+            world.startBouncing();
 
             if(endGameInterval >= maxEndgameInterval) {
                 endGameInterval = 0;

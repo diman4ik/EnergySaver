@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.denis.game.objects.Air;
 import com.denis.game.objects.Blender;
+import com.denis.game.objects.Curling;
 import com.denis.game.objects.Fan;
 import com.denis.game.objects.Indicator;
 import com.denis.game.objects.Iron;
@@ -81,6 +82,7 @@ public class GameWorld {
 
         //stop();
         //percent = 60;
+        //startBouncing();
 
         //ScoreOut sout = new ScoreOut( spawnCoords[0].x, spawnCoords[0].y, curScore);
         //flyingScores.add(sout);
@@ -116,11 +118,18 @@ public class GameWorld {
                 curSpawnInterval = 0f;
             }
 
+
             boom.update(delta);
             lightning.update(delta);
+        }
 
-            for( ScoreOut scout : flyingScores) {
-                scout.lift();
+        for( ScoreOut scout : flyingScores) {
+            scout.lift();
+        }
+
+        if(level == 1) {
+            if (((Refridgerator) gameObjects.get(2)).bouncing) {
+                ((Refridgerator) gameObjects.get(2)).update(delta);
             }
         }
     }
@@ -152,13 +161,15 @@ public class GameWorld {
     // фен
     // радио
     // выключатель
+    // завивка
     private static final Vector2[] spawnCoordsLevel2 =
     {
             new Vector2(7.1f, 4.1f),
             new Vector2(1.6f, 4.25f),
             new Vector2(3.2f, 7.5f),
             new Vector2(15f, 10),
-            new Vector2(4.5f, 10.5f)
+            new Vector2(4.5f, 10.5f),
+            new Vector2(11.2f, 13.3f)
     };
 
     // телек
@@ -279,6 +290,7 @@ public class GameWorld {
             gameObjects.add(new Fan(spawnCoords[2].x, spawnCoords[2].y));
             gameObjects.add(new Radio(spawnCoords[3].x, spawnCoords[3].y));
             gameObjects.add(new Switch(spawnCoords[4].x, spawnCoords[4].y));
+            gameObjects.add(new Curling(spawnCoords[5].x, spawnCoords[5].y));
         }
         else if(level == 3) {
             spawnCoords = spawnCoordsLevel3;
@@ -326,5 +338,23 @@ public class GameWorld {
         lightning.setVisibility(false);
         lightning.setStop(false);
         boom.setVisibility(false);
+    }
+
+    public void startBouncing() {
+        if(level == 1) {
+            ((Refridgerator)gameObjects.get(2)).startBouncing();
+        }
+    }
+
+    public boolean bouncingObjectTouched(Vector3 touchPoint) {
+        if(level == 1) {
+            Refridgerator fridge = ((Refridgerator)gameObjects.get(2));
+
+            if(fridge.bouncing) {
+                return fridge.touched(touchPoint);
+            }
+        }
+
+        return false;
     }
 }

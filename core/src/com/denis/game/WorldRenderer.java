@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.denis.game.objects.Air;
 import com.denis.game.objects.Blender;
+import com.denis.game.objects.Curling;
 import com.denis.game.objects.Fan;
 import com.denis.game.objects.Indicator;
 import com.denis.game.objects.Iron;
@@ -202,14 +203,20 @@ public class WorldRenderer {
                                 Blender.BLENDER_WIDTH, Blender.BLENDER_HEIGHT);
                     }
                 } else if (obj instanceof Refridgerator) {
-                    if(obj.broken) {
-                        batch.draw(Assets.brokenRefrigeratorRegion, obj.position.x - Refridgerator.REFRIDGERATOR_WIDTH / 2 + 0.65f, obj.position.y - 0.5f * Refridgerator.REFRIDGERATOR_HEIGHT + 0.35f,
-                                Refridgerator.REFRIDGERATOR_WIDTH, Refridgerator.REFRIDGERATOR_HEIGHT);
+                    Refridgerator fridge = (Refridgerator)obj;
+                    if(!fridge.bouncing) {
+                        if (obj.broken) {
+                            batch.draw(Assets.brokenRefrigeratorRegion, obj.position.x - Refridgerator.REFRIDGERATOR_WIDTH / 2 + 0.65f, obj.position.y - Refridgerator.REFRIDGERATOR_HEIGHT/2 + 0.35f,
+                                    Refridgerator.REFRIDGERATOR_WIDTH, Refridgerator.REFRIDGERATOR_HEIGHT);
+                        } else {
+                            batch.draw(Assets.refrigeratorRegion, obj.position.x - Refridgerator.REFRIDGERATOR_WIDTH / 2 + 0.65f, obj.position.y - Refridgerator.REFRIDGERATOR_HEIGHT/2 + 0.35f,
+                                    Refridgerator.REFRIDGERATOR_WIDTH, Refridgerator.REFRIDGERATOR_HEIGHT);
+                        }
                     }
                     else {
-                        batch.draw(Assets.refrigeratorRegion, obj.position.x - Refridgerator.REFRIDGERATOR_WIDTH / 2 + 0.65f, obj.position.y - 0.5f * Refridgerator.REFRIDGERATOR_HEIGHT + 0.35f,
+                        TextureRegion keyFrame = Assets.holodAnimation.getKeyFrame(fridge.time, Animation.ANIMATION_LOOPING);
+                        batch.draw(keyFrame, obj.position.x - Refridgerator.REFRIDGERATOR_WIDTH / 2 + 0.65f, obj.position.y - Refridgerator.REFRIDGERATOR_HEIGHT/2 + 0.35f,
                                 Refridgerator.REFRIDGERATOR_WIDTH, Refridgerator.REFRIDGERATOR_HEIGHT);
-
                     }
                 } else if (obj instanceof Toster) {
                     if(obj.broken) {
@@ -298,6 +305,16 @@ public class WorldRenderer {
                     else {
                         batch.draw(Assets.radioRegion, obj.position.x - Radio.RADIO_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Radio.RADIO_HEIGHT + 0.35f,
                                 Radio.RADIO_WIDTH, Radio.RADIO_HEIGHT);
+                    }
+                }
+                else if(obj instanceof Curling) {
+                    if(obj.broken) {
+                        batch.draw(Assets.brokenCurlingRegion, obj.position.x - Curling.CURLING_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Curling.CURLING_HEIGHT + 0.35f,
+                                Curling.CURLING_WIDTH, Curling.CURLING_HEIGHT);
+                    }
+                    else {
+                        batch.draw(Assets.curlingRegion, obj.position.x - Curling.CURLING_WIDTH / 2 + 0.2f, obj.position.y - 0.9f * Curling.CURLING_HEIGHT + 0.35f,
+                                Curling.CURLING_WIDTH, Curling.CURLING_HEIGHT);
                     }
                 }
                 else if(obj instanceof R3TV) {

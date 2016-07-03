@@ -127,6 +127,12 @@ public class Assets {
     public static Texture brokenRadio;
     public static TextureRegion brokenRadioRegion;
 
+    public static Texture curling;
+    public static TextureRegion curlingRegion;
+
+    public static Texture brokenCurling;
+    public static TextureRegion brokenCurlingRegion;
+
     public static Texture winScreen;
     public static TextureRegion winScreenRegion;
 
@@ -226,6 +232,8 @@ public class Assets {
     public static BitmapFont scoreFont;
     public static BitmapFont scoreFontBig;
 
+    public static Animation holodAnimation;
+    public static TextureRegion [] holodFrames = new TextureRegion[12];
 
     public static void load () {
         startBackground = loadTexture("cover.png");
@@ -501,6 +509,80 @@ public class Assets {
 
         boomAnimation = new Animation(0.05f, boomFrames);
 
+        {
+            Texture holod1 = loadTexture("holod/holod1.png");
+            TextureRegion holod1Region = new TextureRegion( holod1, 0, 0, 252, 626);
+            holodFrames[0] = holod1Region;
+        }
+
+        {
+            Texture holod2 = loadTexture("holod/holod2.png");
+            TextureRegion holod2Region = new TextureRegion( holod2, 0, 0, 252, 626);
+            holodFrames[1] = holod2Region;
+        }
+
+        {
+            Texture holod3 = loadTexture("holod/holod3.png");
+            TextureRegion holod3Region = new TextureRegion( holod3, 0, 0, 252, 626);
+            holodFrames[2] = holod3Region;
+        }
+
+        {
+            Texture holod4 = loadTexture("holod/holod4.png");
+            TextureRegion holod4Region = new TextureRegion( holod4, 0, 0, 252, 626);
+            holodFrames[3] = holod4Region;
+        }
+
+        {
+            Texture holod5 = loadTexture("holod/holod5.png");
+            TextureRegion holod5Region = new TextureRegion( holod5, 0, 0, 252, 626);
+            holodFrames[4] = holod5Region;
+        }
+
+        {
+            Texture holod6 = loadTexture("holod/holod6.png");
+            TextureRegion holod6Region = new TextureRegion( holod6, 0, 0, 252, 626);
+            holodFrames[5] = holod6Region;
+        }
+
+        {
+            Texture holod7 = loadTexture("holod/holod7.png");
+            TextureRegion holod7Region = new TextureRegion( holod7, 0, 0, 252, 626);
+            holodFrames[6] = holod7Region;
+        }
+
+        {
+            Texture holod8 = loadTexture("holod/holod8.png");
+            TextureRegion holod8Region = new TextureRegion( holod8, 0, 0, 252, 626);
+            holodFrames[7] = holod8Region;
+        }
+
+        {
+            Texture holod9 = loadTexture("holod/holod9.png");
+            TextureRegion holod9Region = new TextureRegion( holod9, 0, 0, 252, 626);
+            holodFrames[8] = holod9Region;
+        }
+
+        {
+            Texture holod10 = loadTexture("holod/holod10.png");
+            TextureRegion holod10Region = new TextureRegion( holod10, 0, 0, 252, 626);
+            holodFrames[9] = holod10Region;
+        }
+
+        {
+            Texture holod11 = loadTexture("holod/holod11.png");
+            TextureRegion holod11Region = new TextureRegion( holod11, 0, 0, 252, 626);
+            holodFrames[10] = holod11Region;
+        }
+
+        {
+            Texture holod12 = loadTexture("holod/holod12.png");
+            TextureRegion holod12Region = new TextureRegion( holod12, 0, 0, 252, 626);
+            holodFrames[11] = holod12Region;
+        }
+
+        holodAnimation = new Animation(0.2f, holodFrames);
+
         roomMusic = Gdx.audio.newMusic(Gdx.files.internal("roomsound.mp3"));
         lightningMusic = Gdx.audio.newMusic(Gdx.files.internal("electric.mp3"));
         boomMusic = Gdx.audio.newMusic(Gdx.files.internal("boom.mp3"));
@@ -564,6 +646,13 @@ public class Assets {
 
         brokenToster = loadTexture("room1/broken/toster.png");
         brokenTosterRegion = new TextureRegion(brokenToster, 0, 0, 101, 100);
+
+        curling =  loadTexture("room2/normal/r2curling.png");
+        curlingRegion = new TextureRegion(curling, 0, 0, 86, 151);
+
+        brokenCurling =  loadTexture("room2/broken/r2bcurling.png");
+        brokenCurlingRegion = new TextureRegion(brokenCurling, 0, 0, 86, 151);
+
 
         brokenWashing = loadTexture("room2/broken/r2bwashing.png");
         brokenWashingRegion = new TextureRegion(brokenWashing, 0, 0, 256, 366);
